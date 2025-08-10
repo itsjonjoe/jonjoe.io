@@ -115,12 +115,12 @@ export default function LandingPage({ onSelect }: Props) {
         {/* Warrior Section */}
         <section
           onClick={() => onSelect('warrior')}
-          className="group relative flex-1 cursor-pointer overflow-hidden border-r-2 border-[#8b4513] bg-gradient-to-br from-[#2c1810] via-[#4a2c1a] to-[#1a1611] text-[#d4953a] transition-all duration-500 hover:flex-[1.2]"
+          className="group relative flex flex-1 cursor-pointer items-center justify-center overflow-hidden border-r-2 border-[#8b4513] bg-gradient-to-br from-[#2c1810] via-[#4a2c1a] to-[#1a1611] text-[#d4953a] transition-all duration-500 hover:flex-[1.2]"
         >
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="title-background text-[8rem] font-black tracking-widest opacity-10">WARRIOR</div>
           </div>
-          <div className="section-content relative z-10 mx-auto max-w-xs text-center">
+          <div className="section-content relative z-10 mx-auto flex max-w-xs flex-col items-center text-center">
             <div className="relative mb-6 flex flex-col items-center">
               <div className="absolute -top-12">
                 <VikingWarriorIcon />
@@ -154,8 +154,8 @@ export default function LandingPage({ onSelect }: Props) {
         </section>
 
         {/* Central Divider */}
-        <div className="central-divider flex w-1 items-center justify-center bg-gradient-to-b from-[#d4953a] via-[#8b4513] to-[#4682b4]">
-          <div className="viking-crest relative flex h-20 w-20 items-center justify-center rounded-full border-4 border-[#8b4513] bg-black/60">
+        <div className="central-divider relative w-1 bg-gradient-to-b from-[#d4953a] via-[#8b4513] to-[#4682b4]">
+          <div className="viking-crest absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-4 border-[#8b4513] bg-black/60">
             <div className="shield-ring ring-outer absolute inset-0 rounded-full border-2 border-[#d4953a]/60 animate-spin-slow" />
             <div className="shield-ring ring-inner absolute inset-1.5 rounded-full border-2 border-[#d4953a]/60 animate-spin-slower" />
             <div className="text-2xl font-bold text-[#d4953a]">⚡</div>
@@ -165,12 +165,12 @@ export default function LandingPage({ onSelect }: Props) {
         {/* Skald Section */}
         <section
           onClick={() => onSelect('skald')}
-          className="group relative flex-1 cursor-pointer overflow-hidden border-l-2 border-[#4682b4] bg-gradient-to-br from-[#1a2332] via-[#2d4a6b] to-[#1a1611] text-[#87ceeb] transition-all duration-500 hover:flex-[1.2]"
+          className="group relative flex flex-1 cursor-pointer items-center justify-center overflow-hidden border-l-2 border-[#4682b4] bg-gradient-to-br from-[#1a2332] via-[#2d4a6b] to-[#1a1611] text-[#87ceeb] transition-all duration-500 hover:flex-[1.2]"
         >
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="title-background text-[8rem] font-black tracking-widest opacity-10">SKALD</div>
           </div>
-          <div className="section-content relative z-10 mx-auto max-w-xs text-center">
+          <div className="section-content relative z-10 mx-auto flex max-w-xs flex-col items-center text-center">
             <div className="relative mb-6 flex flex-col items-center">
               <div className="absolute -top-12">
                 <VikingSkaldIcon />
