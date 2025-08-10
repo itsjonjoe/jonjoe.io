@@ -152,10 +152,11 @@ export default function LandingPage({ onSelect }: Props) {
             </div>
           </div>
         </section>
-
+        
         {/* Central Divider */}
         <div className="central-divider relative w-1 bg-gradient-to-b from-[#d4953a] via-[#8b4513] to-[#4682b4]">
-          <div className="viking-crest absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-4 border-[#8b4513] bg-black/60">
+          {/* Viking Crest */}
+          <div className="viking-crest pointer-events-none absolute left-1/2 top-1/2 z-10 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-4 border-[#8b4513] bg-black/60">
             <div className="shield-ring ring-outer absolute inset-0 rounded-full border-2 border-[#d4953a]/60 animate-spin-slow" />
             <div className="shield-ring ring-inner absolute inset-1.5 rounded-full border-2 border-[#d4953a]/60 animate-spin-slower" />
             <div className="text-2xl font-bold text-[#d4953a]">⚡</div>
@@ -203,6 +204,7 @@ export default function LandingPage({ onSelect }: Props) {
           </div>
         </section>
       </div>
+
     </div>
   );
 }
