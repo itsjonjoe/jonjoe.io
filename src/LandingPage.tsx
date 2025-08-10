@@ -204,7 +204,6 @@ export default function LandingPage({ onSelect }: Props) {
           </div>
         </section>
       </div>
-
     </div>
   );
 }
