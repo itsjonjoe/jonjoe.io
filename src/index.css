@@ -4,6 +4,49 @@
 
 @layer base {
   body {
-    @apply bg-black text-[#d4953a];
+    @apply bg-[#1a1611] text-[#d4953a] font-cinzel;
+  }
+}
+
+@layer utilities {
+  @keyframes flame-flicker {
+    0%, 100% {
+      transform: scale(1) translateY(0);
+      opacity: 0.15;
+    }
+    50% {
+      transform: scale(1.1) translateY(-10px);
+      opacity: 0.25;
+    }
+  }
+  .animate-flame {
+    animation: flame-flicker 8s ease-in-out infinite;
+  }
+
+  @keyframes axe-swing {
+    0%, 100% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(15deg);
+    }
+  }
+  .animate-axe {
+    animation: axe-swing 1.5s ease-in-out infinite;
+  }
+
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .animate-spin-slow {
+    animation: spin-slow 12s linear infinite;
+  }
+  .animate-spin-slower {
+    animation: spin-slow 8s linear infinite reverse;
   }
 }
