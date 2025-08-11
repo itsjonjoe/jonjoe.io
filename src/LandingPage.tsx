@@ -120,10 +120,11 @@ export default function LandingPage({ onSelect }: Props) {
           </div>
           <div className="section-content relative z-10 mx-auto flex max-w-xs flex-col items-center text-center">
             <div className="relative mb-6 flex flex-col items-center">
-              <div className="absolute -top-12">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 md:-top-12">
                 <VikingWarriorIcon />
               </div>
-              <span className="title-main block pt-24 text-2xl font-bold tracking-widest md:text-3xl">WARRIOR</span>
+
+              <span className="title-main block pt-28 md:pt-24 text-2xl font-bold tracking-widest md:text-3xl">WARRIOR</span>
               <span
                 key={warriorIndex}
                 className="title-sub block text-base italic opacity-80 transition-opacity duration-300 md:text-lg"
@@ -171,10 +172,10 @@ export default function LandingPage({ onSelect }: Props) {
           </div>
           <div className="section-content relative z-10 mx-auto flex max-w-xs flex-col items-center text-center">
             <div className="relative mb-6 flex flex-col items-center">
-              <div className="absolute -top-12">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 md:-top-12">
                 <VikingSkaldIcon />
               </div>
-              <span className="title-main block pt-24 text-2xl font-bold tracking-widest md:text-3xl">SKALD</span>
+              <span className="title-main block pt-28 md:pt-24 text-2xl font-bold tracking-widest md:text-3xl">SKALD</span>
               <span
                 key={skaldIndex}
                 className="title-sub block text-base italic opacity-80 transition-opacity duration-300 md:text-lg"
