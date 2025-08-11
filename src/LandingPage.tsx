@@ -14,8 +14,7 @@ const skaldRunes = ['Epic Tales', 'Verses', 'Chronicles', 'Legends', 'Ballads'];
 const VikingWarriorIcon = () => (
   <svg
     viewBox="0 0 32 32"
-    width="120"
-    height="120"
+    className="w-24 h-24 md:w-32 md:h-32"
     style={{ imageRendering: 'pixelated', display: 'block' }}
   >
     <rect x="0" y="0" width="32" height="32" fill="transparent" />
@@ -48,8 +47,7 @@ const VikingWarriorIcon = () => (
 const VikingSkaldIcon = () => (
   <svg
     viewBox="0 0 32 32"
-    width="120"
-    height="120"
+    className="w-24 h-24 md:w-32 md:h-32"
     style={{ imageRendering: 'pixelated', display: 'block' }}
   >
     <rect x="0" y="0" width="32" height="32" fill="transparent" />
@@ -111,42 +109,42 @@ export default function LandingPage({ onSelect }: Props) {
         />
       </div>
 
-      <div className="landing-page flex h-screen">
+      <div className="landing-page flex h-screen flex-col md:flex-row">
         {/* Warrior Section */}
         <section
           onClick={() => onSelect('warrior')}
-          className="group relative flex flex-1 cursor-pointer items-center justify-center overflow-hidden border-r-2 border-[#8b4513] bg-gradient-to-br from-[#2c1810] via-[#4a2c1a] to-[#1a1611] text-[#d4953a] transition-all duration-500 hover:flex-[1.2]"
+          className="group relative flex flex-1 cursor-pointer items-center justify-center overflow-hidden border-b-2 border-[#8b4513] bg-gradient-to-br from-[#2c1810] via-[#4a2c1a] to-[#1a1611] text-[#d4953a] transition-all duration-500 hover:flex-[1.2] md:border-b-0 md:border-r-2"
         >
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="title-background text-[8rem] font-black tracking-widest opacity-10">WARRIOR</div>
+            <div className="title-background text-[4rem] sm:text-[6rem] md:text-[8rem] font-black tracking-widest opacity-10">WARRIOR</div>
           </div>
           <div className="section-content relative z-10 mx-auto flex max-w-xs flex-col items-center text-center">
             <div className="relative mb-6 flex flex-col items-center">
               <div className="absolute -top-12">
                 <VikingWarriorIcon />
               </div>
-              <span className="title-main block pt-24 text-3xl font-bold tracking-widest">WARRIOR</span>
+              <span className="title-main block pt-24 text-2xl font-bold tracking-widest md:text-3xl">WARRIOR</span>
               <span
                 key={warriorIndex}
-                className="title-sub block text-lg italic opacity-80 transition-opacity duration-300"
+                className="title-sub block text-base italic opacity-80 transition-opacity duration-300 md:text-lg"
               >
                 {warriorTexts[warriorIndex]}
               </span>
             </div>
-            <p className="section-description mb-6 font-mono text-sm opacity-90">
+            <p className="section-description mb-6 font-mono text-xs opacity-90 sm:text-sm">
               Wielding modern weapons to conquer digital realms. Building fortresses that stand the test of time.
             </p>
             <div className="skill-runes mb-8 flex flex-wrap justify-center gap-2">
               {warriorRunes.map(r => (
                 <span
                   key={r}
-                  className="rune-tag rounded border border-current bg-black/30 px-2 py-1 text-sm font-mono"
+                  className="rune-tag rounded border border-current bg-black/30 px-2 py-1 text-xs font-mono sm:text-sm"
                 >
                   {r}
                 </span>
               ))}
             </div>
-            <div className="action-hint flex items-center justify-center gap-2 text-sm opacity-70 font-mono">
+            <div className="action-hint flex items-center justify-center gap-2 text-xs font-mono opacity-70 sm:text-sm">
               <span>Enter the workshop</span>
               <span className="axe-indicator animate-axe">⚔️</span>
             </div>
@@ -154,9 +152,9 @@ export default function LandingPage({ onSelect }: Props) {
         </section>
         
         {/* Central Divider */}
-        <div className="central-divider relative w-1 bg-gradient-to-b from-[#d4953a] via-[#8b4513] to-[#4682b4]">
+        <div className="central-divider relative h-1 w-full bg-gradient-to-r from-[#d4953a] via-[#8b4513] to-[#4682b4] md:h-full md:w-1 md:bg-gradient-to-b">
           {/* Viking Crest */}
-          <div className="viking-crest pointer-events-none absolute left-1/2 top-1/2 z-10 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-4 border-[#8b4513] bg-black/60">
+          <div className="viking-crest pointer-events-none absolute left-1/2 top-1/2 z-10 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-4 border-[#8b4513] bg-black/60 md:h-20 md:w-20">
             <div className="shield-ring ring-outer absolute inset-0 rounded-full border-2 border-[#d4953a]/60 animate-spin-slow" />
             <div className="shield-ring ring-inner absolute inset-1.5 rounded-full border-2 border-[#d4953a]/60 animate-spin-slower" />
             <div className="text-2xl font-bold text-[#d4953a]">⚡</div>
@@ -166,38 +164,38 @@ export default function LandingPage({ onSelect }: Props) {
         {/* Skald Section */}
         <section
           onClick={() => onSelect('skald')}
-          className="group relative flex flex-1 cursor-pointer items-center justify-center overflow-hidden border-l-2 border-[#4682b4] bg-gradient-to-br from-[#1a2332] via-[#2d4a6b] to-[#1a1611] text-[#87ceeb] transition-all duration-500 hover:flex-[1.2]"
+          className="group relative flex flex-1 cursor-pointer items-center justify-center overflow-hidden border-t-2 border-[#4682b4] bg-gradient-to-br from-[#1a2332] via-[#2d4a6b] to-[#1a1611] text-[#87ceeb] transition-all duration-500 hover:flex-[1.2] md:border-t-0 md:border-l-2"
         >
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="title-background text-[8rem] font-black tracking-widest opacity-10">SKALD</div>
+            <div className="title-background text-[4rem] sm:text-[6rem] md:text-[8rem] font-black tracking-widest opacity-10">SKALD</div>
           </div>
           <div className="section-content relative z-10 mx-auto flex max-w-xs flex-col items-center text-center">
             <div className="relative mb-6 flex flex-col items-center">
               <div className="absolute -top-12">
                 <VikingSkaldIcon />
               </div>
-              <span className="title-main block pt-24 text-3xl font-bold tracking-widest">SKALD</span>
+              <span className="title-main block pt-24 text-2xl font-bold tracking-widest md:text-3xl">SKALD</span>
               <span
                 key={skaldIndex}
-                className="title-sub block text-lg italic opacity-80 transition-opacity duration-300"
+                className="title-sub block text-base italic opacity-80 transition-opacity duration-300 md:text-lg"
               >
                 {skaldTexts[skaldIndex]}
               </span>
             </div>
-            <p className="section-description mb-6 font-mono text-sm opacity-90">
+            <p className="section-description mb-6 font-mono text-xs opacity-90 sm:text-sm">
               Crafting sagas that echo through the ages. Words that kindle fire in mortal hearts.
             </p>
             <div className="story-runes mb-8 flex flex-wrap justify-center gap-2">
               {skaldRunes.map(r => (
                 <span
                   key={r}
-                  className="rune-tag rounded border border-current bg-black/30 px-2 py-1 text-sm font-mono"
+                  className="rune-tag rounded border border-current bg-black/30 px-2 py-1 text-xs font-mono sm:text-sm"
                 >
                   {r}
                 </span>
               ))}
             </div>
-            <div className="action-hint flex items-center justify-center gap-2 text-sm opacity-70 font-mono">
+            <div className="action-hint flex items-center justify-center gap-2 text-xs font-mono opacity-70 sm:text-sm">
               <span>Enter the hall</span>
               <span className="axe-indicator animate-axe">📜</span>
             </div>
