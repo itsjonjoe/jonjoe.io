@@ -123,6 +123,7 @@ export default function LandingPage({ onSelect }: Props) {
               <div className="absolute top-0 left-1/2 -translate-x-1/2 md:-top-12">
                 <VikingWarriorIcon />
               </div>
+
               <span className="title-main block pt-28 md:pt-24 text-2xl font-bold tracking-widest md:text-3xl">WARRIOR</span>
               <span
                 key={warriorIndex}
