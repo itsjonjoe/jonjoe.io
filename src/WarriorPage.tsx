@@ -98,20 +98,20 @@ const testimonials = [
 
 export default function WarriorPage({ onBack }: Props) {
   return (
-    <div className="min-h-screen bg-[#1a1611] text-[#d4953a] p-8">
+    <div className="min-h-screen bg-[#1a1611] p-4 text-[#d4953a] md:p-8">
       <button
         onClick={onBack}
-        className="fixed top-8 left-8 bg-black/80 border-2 border-[#8b4513] px-6 py-3 rounded hover:bg-[#8b4513] hover:text-white transition"
+        className="fixed top-4 left-4 rounded border-2 border-[#8b4513] bg-black/80 px-4 py-2 transition hover:bg-[#8b4513] hover:text-white md:top-8 md:left-8 md:px-6 md:py-3"
       >
         ← Return to Longhouse
       </button>
 
-      <div className="max-w-5xl mx-auto mt-24 space-y-16">
+      <div className="mx-auto mt-20 max-w-5xl space-y-12 md:mt-24 md:space-y-16">
         {/* Hero Section */}
         <section className="text-center space-y-4">
           <h1 className="text-4xl md:text-5xl font-bold">THE WARRIOR'S FORGE</h1>
           <h2 className="text-xl md:text-2xl opacity-90">Where Code Becomes Legend</h2>
-          <div className="bg-black/30 border-2 border-[#8b4513] rounded-lg p-8 max-w-xl mx-auto">
+          <div className="mx-auto max-w-xl rounded-lg border-2 border-[#8b4513] bg-black/30 p-6 md:p-8">
             <div className="flex items-center gap-2 text-[#10b981] font-mono text-sm justify-center mb-4">
               <span className="w-2 h-2 bg-[#10b981] rounded-full animate-pulse"></span>
               <span>Available for new projects</span>
@@ -165,7 +165,7 @@ export default function WarriorPage({ onBack }: Props) {
             {projects.map((proj) => (
               <div
                 key={proj.name}
-                className="bg-black/50 border border-[#8b4513] rounded-xl p-8 transition transform hover:border-[#d4953a] hover:-translate-y-1"
+                className="transform rounded-xl border border-[#8b4513] bg-black/50 p-6 transition hover:-translate-y-1 hover:border-[#d4953a] md:p-8"
               >
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                   <div>
@@ -213,7 +213,7 @@ export default function WarriorPage({ onBack }: Props) {
             {testimonials.map((t) => (
               <div
                 key={t.author}
-                className="bg-black/50 border border-[#8b4513] rounded-xl p-8 relative transition hover:border-[#d4953a] hover:-translate-y-1"
+                className="relative rounded-xl border border-[#8b4513] bg-black/50 p-6 transition hover:-translate-y-1 hover:border-[#d4953a] md:p-8"
               >
                 <div className="absolute top-5 left-6 text-5xl font-bold opacity-20 text-[#d4953a]">"</div>
                 <p className="relative text-lg leading-relaxed mb-6 opacity-90 pl-4">{t.quote}</p>
@@ -229,7 +229,7 @@ export default function WarriorPage({ onBack }: Props) {
         {/* Call to Action */}
         <section className="text-center">
           <h3 className="text-3xl mb-4">Let's Work Together</h3>
-          <div className="relative bg-black/30 border-2 border-[#8b4513] rounded-2xl p-16 max-w-2xl mx-auto overflow-hidden">
+          <div className="relative mx-auto max-w-2xl overflow-hidden rounded-2xl border-2 border-[#8b4513] bg-black/30 p-10 md:p-16">
             <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(212,149,58,0.05)_0%,transparent_70%)] pointer-events-none"></div>
             <h4 className="text-4xl font-bold mb-4 relative z-10">
               Ready to build something <span className="text-[#8b4513]">exceptional</span>?
