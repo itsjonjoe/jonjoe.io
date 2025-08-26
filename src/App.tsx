@@ -5,10 +5,10 @@ import SkaldPage from './SkaldPage';
 import SmithPage from './SmithPage';
 
 const SiteOverlay = () => (
-  <div className="pointer-events-none fixed inset-0 z-20 flex flex-col items-center justify-center text-center select-none text-white/10">
-    <h1 className="text-5xl md:text-8xl font-black tracking-widest">Jonjoe Whitfield</h1>
-    <p className="mt-2 text-xs md:text-sm tracking-widest">Tagline</p>
-    <div className="mt-2 h-px w-32 bg-current opacity-10" />
+  <div className="pointer-events-none fixed inset-0 z-20 flex flex-col items-center justify-center text-center select-none">
+    <h1 className="text-5xl md:text-8xl font-black tracking-widest text-white/10">Jonjoe Whitfield</h1>
+    <p className="mt-2 text-xs md:text-sm tracking-widest text-white/10">Tagline</p>
+    <div className="mt-2 h-px w-32 bg-white/10" />
   </div>
 );
 
