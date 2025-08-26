@@ -8,8 +8,11 @@ interface Props {
 const warriorTexts = ['Code Forger', 'System Builder', 'Tech Viking', 'Digital Warrior'];
 const skaldTexts = ['Tale Weaver', 'Word Smith', 'Story Teller', 'Saga Writer'];
 
+const gymTexts = ['Strength Seeker', 'Nutrition Sage', 'Health Warrior', 'Iron Viking'];
+
 const warriorRunes = ['React Native', 'TypeScript', 'Node.js', 'AWS', 'Architecture'];
 const skaldRunes = ['Epic Tales', 'Verses', 'Chronicles', 'Legends', 'Ballads'];
+const gymRunes = ['Weightlifting', 'Macros', 'Consistency', 'Recovery'];
 
 const VikingWarriorIcon = () => (
   <svg
@@ -75,14 +78,33 @@ const VikingSkaldIcon = () => (
   </svg>
 );
 
+const VikingGymIcon = () => (
+  <svg
+    viewBox="0 0 32 32"
+    className="w-24 h-24 md:w-32 md:h-32"
+    style={{ imageRendering: 'pixelated', display: 'block' }}
+  >
+    <rect x="0" y="0" width="32" height="32" fill="transparent" />
+    {/* Barbell */}
+    <rect x="4" y="14" width="4" height="4" fill="#ccc" />
+    <rect x="8" y="15" width="16" height="2" fill="#666" />
+    <rect x="24" y="14" width="4" height="4" fill="#ccc" />
+    {/* Helmet */}
+    <rect x="12" y="6" width="8" height="4" fill="#8b4513" />
+    <rect x="11" y="10" width="10" height="6" fill="#fdbcb4" />
+  </svg>
+);
+
 export default function LandingPage({ onSelect }: Props) {
   const [warriorIndex, setWarriorIndex] = useState(0);
   const [skaldIndex, setSkaldIndex] = useState(0);
+  const [gymIndex, setGymIndex] = useState(0);
 
   useEffect(() => {
     const id = setInterval(() => {
       setWarriorIndex(i => (i + 1) % warriorTexts.length);
       setSkaldIndex(i => (i + 1) % skaldTexts.length);
+      setGymIndex(i => (i + 1) % gymTexts.length);
     }, 4000);
     return () => clearInterval(id);
   }, []);
@@ -109,7 +131,14 @@ export default function LandingPage({ onSelect }: Props) {
         />
       </div>
 
-      <div className="landing-page flex h-screen flex-col md:flex-row">
+      <div className="landing-page relative flex h-screen flex-col md:flex-row">
+        {/* Viking Crest */}
+        <div className="viking-crest pointer-events-none absolute left-1/2 top-1/2 z-10 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-4 border-[#8b4513] bg-black/60 md:h-20 md:w-20">
+          <div className="shield-ring ring-outer absolute inset-0 rounded-full border-2 border-[#d4953a]/60 animate-spin-slow" />
+          <div className="shield-ring ring-inner absolute inset-1.5 rounded-full border-2 border-[#d4953a]/60 animate-spin-slower" />
+          <div className="text-2xl font-bold text-[#d4953a]">⚡</div>
+        </div>
+
         {/* Warrior Section */}
         <section
           onClick={() => onSelect('warrior')}
@@ -152,20 +181,10 @@ export default function LandingPage({ onSelect }: Props) {
           </div>
         </section>
         
-        {/* Central Divider */}
-        <div className="central-divider relative h-1 w-full bg-gradient-to-r from-[#d4953a] via-[#8b4513] to-[#4682b4] md:h-full md:w-1 md:bg-gradient-to-b">
-          {/* Viking Crest */}
-          <div className="viking-crest pointer-events-none absolute left-1/2 top-1/2 z-10 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-4 border-[#8b4513] bg-black/60 md:h-20 md:w-20">
-            <div className="shield-ring ring-outer absolute inset-0 rounded-full border-2 border-[#d4953a]/60 animate-spin-slow" />
-            <div className="shield-ring ring-inner absolute inset-1.5 rounded-full border-2 border-[#d4953a]/60 animate-spin-slower" />
-            <div className="text-2xl font-bold text-[#d4953a]">⚡</div>
-          </div>
-        </div>
-
         {/* Skald Section */}
         <section
           onClick={() => onSelect('skald')}
-          className="group relative flex flex-1 cursor-pointer items-center justify-center overflow-hidden border-t-2 border-[#4682b4] bg-gradient-to-br from-[#1a2332] via-[#2d4a6b] to-[#1a1611] text-[#87ceeb] transition-all duration-500 hover:flex-[1.2] md:border-t-0 md:border-l-2"
+          className="group relative flex flex-1 cursor-pointer items-center justify-center overflow-hidden border-t-2 border-b-2 border-[#4682b4] bg-gradient-to-br from-[#1a2332] via-[#2d4a6b] to-[#1a1611] text-[#87ceeb] transition-all duration-500 hover:flex-[1.2] md:border-t-0 md:border-b-0 md:border-l-2 md:border-r-2"
         >
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="title-background text-[4rem] sm:text-[6rem] md:text-[8rem] font-black tracking-widest opacity-10">SKALD</div>
@@ -199,6 +218,47 @@ export default function LandingPage({ onSelect }: Props) {
             <div className="action-hint flex items-center justify-center gap-2 text-xs font-mono opacity-70 sm:text-sm">
               <span>Enter the hall</span>
               <span className="axe-indicator animate-axe">📜</span>
+            </div>
+          </div>
+        </section>
+
+        {/* Gym Section */}
+        <section
+          onClick={() => onSelect('gym')}
+          className="group relative flex flex-1 cursor-pointer items-center justify-center overflow-hidden border-t-2 border-[#10b981] bg-gradient-to-br from-[#0f1a0f] via-[#1b3a1b] to-[#1a1611] text-[#10b981] transition-all duration-500 hover:flex-[1.2] md:border-t-0 md:border-l-2"
+        >
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="title-background text-[4rem] sm:text-[6rem] md:text-[8rem] font-black tracking-widest opacity-10">GYM</div>
+          </div>
+          <div className="section-content relative z-10 mx-auto flex max-w-xs flex-col items-center text-center">
+            <div className="relative mb-6 flex flex-col items-center">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 md:-top-12">
+                <VikingGymIcon />
+              </div>
+              <span className="title-main block pt-28 md:pt-24 text-2xl font-bold tracking-widest md:text-3xl">GYM</span>
+              <span
+                key={gymIndex}
+                className="title-sub block text-base italic opacity-80 transition-opacity duration-300 md:text-lg"
+              >
+                {gymTexts[gymIndex]}
+              </span>
+            </div>
+            <p className="section-description mb-6 font-mono text-xs opacity-90 sm:text-sm">
+              Building strength and discipline through iron and nutrition.
+            </p>
+            <div className="story-runes mb-8 flex flex-wrap justify-center gap-2">
+              {gymRunes.map(r => (
+                <span
+                  key={r}
+                  className="rune-tag rounded border border-current bg-black/30 px-2 py-1 text-xs font-mono sm:text-sm"
+                >
+                  {r}
+                </span>
+              ))}
+            </div>
+            <div className="action-hint flex items-center justify-center gap-2 text-xs font-mono opacity-70 sm:text-sm">
+              <span>Enter the training ground</span>
+              <span className="axe-indicator animate-axe">🏋️</span>
             </div>
           </div>
         </section>
