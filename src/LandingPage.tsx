@@ -166,16 +166,13 @@ export default function LandingPage({ onSelect }: Props) {
             <p className="section-description mb-6 font-mono text-xs opacity-90 sm:text-sm">
               Wielding modern weapons to conquer digital realms. Building fortresses that stand the test of time.
             </p>
-            <div className="skill-runes mb-8 flex flex-wrap justify-center gap-2">
+            <ul className="rune-list mb-8 text-left">
               {smithRunes.map(r => (
-                <span
-                  key={r}
-                  className="rune-tag rounded border border-current bg-black/30 px-2 py-1 text-xs font-mono sm:text-sm"
-                >
+                <li key={r} className="font-mono text-xs sm:text-sm">
                   {r}
-                </span>
+                </li>
               ))}
-            </div>
+            </ul>
             <div className="action-hint flex items-center justify-center gap-2 text-xs font-mono opacity-70 sm:text-sm">
               <span>Enter the workshop</span>
               <span className="axe-indicator animate-axe">⚔️</span>
@@ -208,16 +205,13 @@ export default function LandingPage({ onSelect }: Props) {
             <p className="section-description mb-6 font-mono text-xs opacity-90 sm:text-sm">
               Crafting sagas that echo through the ages. Words that kindle fire in mortal hearts.
             </p>
-            <div className="story-runes mb-8 flex flex-wrap justify-center gap-2">
+            <ul className="rune-list mb-8 text-left">
               {skaldRunes.map(r => (
-                <span
-                  key={r}
-                  className="rune-tag rounded border border-current bg-black/30 px-2 py-1 text-xs font-mono sm:text-sm"
-                >
+                <li key={r} className="font-mono text-xs sm:text-sm">
                   {r}
-                </span>
+                </li>
               ))}
-            </div>
+            </ul>
             <div className="action-hint flex items-center justify-center gap-2 text-xs font-mono opacity-70 sm:text-sm">
               <span>Enter the hall</span>
               <span className="axe-indicator animate-axe">📜</span>
@@ -250,16 +244,13 @@ export default function LandingPage({ onSelect }: Props) {
             <p className="section-description mb-6 font-mono text-xs opacity-90 sm:text-sm">
               Building strength and discipline through iron and nutrition.
             </p>
-            <div className="story-runes mb-8 flex flex-wrap justify-center gap-2">
+            <ul className="rune-list mb-8 text-left">
               {warriorRunes.map(r => (
-                <span
-                  key={r}
-                  className="rune-tag rounded border border-current bg-black/30 px-2 py-1 text-xs font-mono sm:text-sm"
-                >
+                <li key={r} className="font-mono text-xs sm:text-sm">
                   {r}
-                </span>
+                </li>
               ))}
-            </div>
+            </ul>
             <div className="action-hint flex items-center justify-center gap-2 text-xs font-mono opacity-70 sm:text-sm">
               <span>Enter the training ground</span>
               <span className="axe-indicator animate-axe">🏋️</span>
