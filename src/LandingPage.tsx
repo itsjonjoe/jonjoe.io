@@ -5,16 +5,16 @@ interface Props {
   onSelect: (p: Page) => void;
 }
 
-const warriorTexts = ['Code Forger', 'System Builder', 'Tech Viking', 'Digital Warrior'];
+const smithTexts = ['Code Forger', 'System Builder', 'Tech Viking', 'Digital Warrior'];
 const skaldTexts = ['Tale Weaver', 'Word Smith', 'Story Teller', 'Saga Writer'];
 
-const berserkerTexts = ['Strength Seeker', 'Nutrition Sage', 'Health Warrior', 'Iron Viking'];
+const warriorTexts = ['Strength Seeker', 'Nutrition Sage', 'Health Warrior', 'Iron Viking'];
 
-const warriorRunes = ['React Native', 'TypeScript', 'Node.js', 'AWS', 'Architecture'];
+const smithRunes = ['React Native', 'TypeScript', 'Node.js', 'AWS', 'Architecture'];
 const skaldRunes = ['Epic Tales', 'Verses', 'Chronicles', 'Legends', 'Ballads'];
-const berserkerRunes = ['Weightlifting', 'Macros', 'Consistency', 'Recovery'];
+const warriorRunes = ['Weightlifting', 'Macros', 'Consistency', 'Recovery'];
 
-const VikingWarriorIcon = () => (
+const VikingSmithIcon = () => (
   <svg
     viewBox="0 0 32 32"
     className="w-24 h-24 md:w-32 md:h-32"
@@ -78,7 +78,7 @@ const VikingSkaldIcon = () => (
   </svg>
 );
 
-const VikingBerserkerIcon = () => (
+const VikingWarriorIcon = () => (
   <svg
     viewBox="0 0 32 32"
     className="w-24 h-24 md:w-32 md:h-32"
@@ -105,15 +105,15 @@ const VikingCrest = ({ className = '' }: { className?: string }) => (
 );
 
 export default function LandingPage({ onSelect }: Props) {
-  const [warriorIndex, setWarriorIndex] = useState(0);
+  const [smithIndex, setSmithIndex] = useState(0);
   const [skaldIndex, setSkaldIndex] = useState(0);
-  const [berserkerIndex, setBerserkerIndex] = useState(0);
+  const [warriorIndex, setWarriorIndex] = useState(0);
 
   useEffect(() => {
     const id = setInterval(() => {
-      setWarriorIndex(i => (i + 1) % warriorTexts.length);
+      setSmithIndex(i => (i + 1) % smithTexts.length);
       setSkaldIndex(i => (i + 1) % skaldTexts.length);
-      setBerserkerIndex(i => (i + 1) % berserkerTexts.length);
+      setWarriorIndex(i => (i + 1) % warriorTexts.length);
     }, 4000);
     return () => clearInterval(id);
   }, []);
@@ -141,35 +141,35 @@ export default function LandingPage({ onSelect }: Props) {
       </div>
 
       <div className="landing-page relative flex h-screen flex-col md:flex-row">
-        <VikingCrest className="left-1/2 top-[33.333%] md:top-1/2 md:left-[33.333%]" />
-        <VikingCrest className="left-1/2 top-[66.666%] md:top-1/2 md:left-[66.666%]" />
-        {/* Warrior Section */}
+        <VikingCrest className="left-1/2 top-1/3 md:top-1/2 md:left-1/3" />
+        <VikingCrest className="left-1/2 top-2/3 md:top-1/2 md:left-2/3" />
+        {/* Smith Section */}
         <section
-          onClick={() => onSelect('warrior')}
+          onClick={() => onSelect('smith')}
           className="group relative flex flex-1 cursor-pointer items-center justify-center overflow-hidden border-b-2 border-[#8b4513] bg-gradient-to-br from-[#2c1810] via-[#4a2c1a] to-[#1a1611] text-[#d4953a] transition-all duration-500 hover:flex-[1.2] md:border-b-0 md:border-r-2"
         >
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="title-background text-[4rem] sm:text-[6rem] md:text-[8rem] font-black tracking-widest opacity-10">WARRIOR</div>
+            <div className="title-background text-[4rem] sm:text-[6rem] md:text-[8rem] font-black tracking-widest opacity-10">SMITH</div>
           </div>
           <div className="section-content relative z-10 mx-auto flex max-w-xs flex-col items-center text-center">
             <div className="relative mb-6 flex flex-col items-center">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 md:-top-12">
-                <VikingWarriorIcon />
+                <VikingSmithIcon />
               </div>
 
-              <span className="title-main block pt-28 md:pt-24 text-2xl font-bold tracking-widest md:text-3xl">WARRIOR</span>
+              <span className="title-main block pt-28 md:pt-24 text-2xl font-bold tracking-widest md:text-3xl">SMITH</span>
               <span
-                key={warriorIndex}
+                key={smithIndex}
                 className="title-sub block text-base italic opacity-80 transition-opacity duration-300 md:text-lg"
               >
-                {warriorTexts[warriorIndex]}
+                {smithTexts[smithIndex]}
               </span>
             </div>
             <p className="section-description mb-6 font-mono text-xs opacity-90 sm:text-sm">
               Wielding modern weapons to conquer digital realms. Building fortresses that stand the test of time.
             </p>
             <div className="skill-runes mb-8 flex flex-wrap justify-center gap-2">
-              {warriorRunes.map(r => (
+              {smithRunes.map(r => (
                 <span
                   key={r}
                   className="rune-tag rounded border border-current bg-black/30 px-2 py-1 text-xs font-mono sm:text-sm"
@@ -226,32 +226,32 @@ export default function LandingPage({ onSelect }: Props) {
           </div>
         </section>
 
-        {/* Berserker Section */}
+        {/* Warrior Section */}
         <section
-          onClick={() => onSelect('berserker')}
+          onClick={() => onSelect('warrior')}
           className="group relative flex flex-1 cursor-pointer items-center justify-center overflow-hidden border-t-2 border-[#eab308] bg-gradient-to-br from-[#33260f] via-[#5b4a1a] to-[#1a1611] text-[#eab308] transition-all duration-500 hover:flex-[1.2] md:border-t-0 md:border-l-2"
         >
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="title-background text-[4rem] sm:text-[6rem] md:text-[8rem] font-black tracking-widest opacity-10">BERSERKER</div>
+            <div className="title-background text-[4rem] sm:text-[6rem] md:text-[8rem] font-black tracking-widest opacity-10">WARRIOR</div>
           </div>
           <div className="section-content relative z-10 mx-auto flex max-w-xs flex-col items-center text-center">
             <div className="relative mb-6 flex flex-col items-center">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 md:-top-12">
-                <VikingBerserkerIcon />
+                <VikingWarriorIcon />
               </div>
-              <span className="title-main block pt-28 md:pt-24 text-2xl font-bold tracking-widest md:text-3xl">BERSERKER</span>
+              <span className="title-main block pt-28 md:pt-24 text-2xl font-bold tracking-widest md:text-3xl">WARRIOR</span>
               <span
-                key={berserkerIndex}
+                key={warriorIndex}
                 className="title-sub block text-base italic opacity-80 transition-opacity duration-300 md:text-lg"
               >
-                {berserkerTexts[berserkerIndex]}
+                {warriorTexts[warriorIndex]}
               </span>
             </div>
             <p className="section-description mb-6 font-mono text-xs opacity-90 sm:text-sm">
               Building strength and discipline through iron and nutrition.
             </p>
             <div className="story-runes mb-8 flex flex-wrap justify-center gap-2">
-              {berserkerRunes.map(r => (
+              {warriorRunes.map(r => (
                 <span
                   key={r}
                   className="rune-tag rounded border border-current bg-black/30 px-2 py-1 text-xs font-mono sm:text-sm"
