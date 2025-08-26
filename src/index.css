@@ -50,3 +50,16 @@
     animation: spin-slow 8s linear infinite reverse;
   }
 }
+
+@layer components {
+  .rune-list {
+    @apply space-y-2;
+  }
+  .rune-list li::before {
+    content: 'ᛟ';
+    @apply mr-2 text-base;
+  }
+  .rune-list li {
+    @apply flex items-center;
+  }
+}

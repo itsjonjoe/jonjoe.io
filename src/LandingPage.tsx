@@ -146,9 +146,6 @@ export default function LandingPage({ onSelect }: Props) {
           onClick={() => onSelect('smith')}
           className="group relative flex flex-1 cursor-pointer items-center justify-center border-b-2 border-[#8b4513] bg-gradient-to-br from-[#2c1810] via-[#4a2c1a] to-[#1a1611] text-[#d4953a] transition-all duration-500 hover:flex-[1.2] md:border-b-0 md:border-r-2"
         >
-          <div className="absolute inset-0 overflow-hidden flex items-center justify-center">
-            <div className="title-background text-[4rem] sm:text-[6rem] md:text-[8rem] font-black tracking-widest opacity-10">SMITH</div>
-          </div>
           <div className="section-content relative z-10 mx-auto flex max-w-xs flex-col items-center text-center">
             <div className="relative mb-6 flex flex-col items-center">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 md:-top-12">
@@ -166,16 +163,13 @@ export default function LandingPage({ onSelect }: Props) {
             <p className="section-description mb-6 font-mono text-xs opacity-90 sm:text-sm">
               Wielding modern weapons to conquer digital realms. Building fortresses that stand the test of time.
             </p>
-            <div className="skill-runes mb-8 flex flex-wrap justify-center gap-2">
+            <ul className="rune-list mb-8 text-left">
               {smithRunes.map(r => (
-                <span
-                  key={r}
-                  className="rune-tag rounded border border-current bg-black/30 px-2 py-1 text-xs font-mono sm:text-sm"
-                >
+                <li key={r} className="font-mono text-xs sm:text-sm">
                   {r}
-                </span>
+                </li>
               ))}
-            </div>
+            </ul>
             <div className="action-hint flex items-center justify-center gap-2 text-xs font-mono opacity-70 sm:text-sm">
               <span>Enter the workshop</span>
               <span className="axe-indicator animate-axe">⚔️</span>
@@ -189,9 +183,6 @@ export default function LandingPage({ onSelect }: Props) {
           onClick={() => onSelect('skald')}
           className="group relative flex flex-1 cursor-pointer items-center justify-center border-t-2 border-b-2 border-[#4682b4] bg-gradient-to-br from-[#1a2332] via-[#2d4a6b] to-[#1a1611] text-[#87ceeb] transition-all duration-500 hover:flex-[1.2] md:border-t-0 md:border-b-0 md:border-l-2 md:border-r-2"
         >
-          <div className="absolute inset-0 overflow-hidden flex items-center justify-center">
-            <div className="title-background text-[4rem] sm:text-[6rem] md:text-[8rem] font-black tracking-widest opacity-10">SKALD</div>
-          </div>
           <div className="section-content relative z-10 mx-auto flex max-w-xs flex-col items-center text-center">
             <div className="relative mb-6 flex flex-col items-center">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 md:-top-12">
@@ -208,16 +199,13 @@ export default function LandingPage({ onSelect }: Props) {
             <p className="section-description mb-6 font-mono text-xs opacity-90 sm:text-sm">
               Crafting sagas that echo through the ages. Words that kindle fire in mortal hearts.
             </p>
-            <div className="story-runes mb-8 flex flex-wrap justify-center gap-2">
+            <ul className="rune-list mb-8 text-left">
               {skaldRunes.map(r => (
-                <span
-                  key={r}
-                  className="rune-tag rounded border border-current bg-black/30 px-2 py-1 text-xs font-mono sm:text-sm"
-                >
+                <li key={r} className="font-mono text-xs sm:text-sm">
                   {r}
-                </span>
+                </li>
               ))}
-            </div>
+            </ul>
             <div className="action-hint flex items-center justify-center gap-2 text-xs font-mono opacity-70 sm:text-sm">
               <span>Enter the hall</span>
               <span className="axe-indicator animate-axe">📜</span>
@@ -231,9 +219,6 @@ export default function LandingPage({ onSelect }: Props) {
           onClick={() => onSelect('warrior')}
           className="group relative flex flex-1 cursor-pointer items-center justify-center border-t-2 border-[#eab308] bg-gradient-to-br from-[#33260f] via-[#5b4a1a] to-[#1a1611] text-[#eab308] transition-all duration-500 hover:flex-[1.2] md:border-t-0 md:border-l-2"
         >
-          <div className="absolute inset-0 overflow-hidden flex items-center justify-center">
-            <div className="title-background text-[4rem] sm:text-[6rem] md:text-[8rem] font-black tracking-widest opacity-10">WARRIOR</div>
-          </div>
           <div className="section-content relative z-10 mx-auto flex max-w-xs flex-col items-center text-center">
             <div className="relative mb-6 flex flex-col items-center">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 md:-top-12">
@@ -250,16 +235,13 @@ export default function LandingPage({ onSelect }: Props) {
             <p className="section-description mb-6 font-mono text-xs opacity-90 sm:text-sm">
               Building strength and discipline through iron and nutrition.
             </p>
-            <div className="story-runes mb-8 flex flex-wrap justify-center gap-2">
+            <ul className="rune-list mb-8 text-left">
               {warriorRunes.map(r => (
-                <span
-                  key={r}
-                  className="rune-tag rounded border border-current bg-black/30 px-2 py-1 text-xs font-mono sm:text-sm"
-                >
+                <li key={r} className="font-mono text-xs sm:text-sm">
                   {r}
-                </span>
+                </li>
               ))}
-            </div>
+            </ul>
             <div className="action-hint flex items-center justify-center gap-2 text-xs font-mono opacity-70 sm:text-sm">
               <span>Enter the training ground</span>
               <span className="axe-indicator animate-axe">🏋️</span>
