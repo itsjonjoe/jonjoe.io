@@ -1,8 +1,5 @@
 import React from 'react';
-
-interface Props {
-  onBack: () => void;
-}
+import { useNavigate } from 'react-router-dom';
 
 const stats = [
   { value: '10+', label: 'Years of Experience' },
@@ -96,11 +93,12 @@ const testimonials = [
   },
 ];
 
-export default function SmithPage({ onBack }: Props) {
+export default function SmithPage() {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-[#1a1611] p-4 text-[#d4953a] md:p-8">
       <button
-        onClick={onBack}
+        onClick={() => navigate('/')}
         className="fixed top-4 left-4 rounded border-2 border-[#8b4513] bg-black/80 px-4 py-2 transition hover:bg-[#8b4513] hover:text-white md:top-8 md:left-8 md:px-6 md:py-3"
       >
         ← Return to Longhouse

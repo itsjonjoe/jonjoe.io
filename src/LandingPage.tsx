@@ -1,9 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Page } from './App';
-
-interface Props {
-  onSelect: (p: Page) => void;
-}
+import { useNavigate } from 'react-router-dom';
 
 const smithTexts = ['Code Forger', 'System Builder', 'Tech Viking', 'Digital Warrior'];
 const skaldTexts = ['Tale Weaver', 'Word Smith', 'Story Teller', 'Saga Writer'];
@@ -104,7 +100,8 @@ const VikingCrest = ({ className = '' }: { className?: string }) => (
   </div>
 );
 
-export default function LandingPage({ onSelect }: Props) {
+export default function LandingPage() {
+  const navigate = useNavigate();
   const [smithIndex, setSmithIndex] = useState(0);
   const [skaldIndex, setSkaldIndex] = useState(0);
   const [warriorIndex, setWarriorIndex] = useState(0);
@@ -143,7 +140,7 @@ export default function LandingPage({ onSelect }: Props) {
       <div className="landing-page relative flex h-screen flex-col md:flex-row">
         {/* Smith Section */}
         <section
-          onClick={() => onSelect('smith')}
+          onClick={() => navigate('/engineering')}
           className="group relative flex flex-1 cursor-pointer items-center justify-center border-b-2 border-[#8b4513] bg-gradient-to-br from-[#2c1810] via-[#4a2c1a] to-[#1a1611] text-[#d4953a] transition-all duration-500 hover:flex-[1.2] md:border-b-0 md:border-r-2"
         >
           <div className="absolute inset-0 overflow-hidden flex items-center justify-center">
@@ -186,7 +183,7 @@ export default function LandingPage({ onSelect }: Props) {
 
         {/* Skald Section */}
         <section
-          onClick={() => onSelect('skald')}
+          onClick={() => navigate('/writing')}
           className="group relative flex flex-1 cursor-pointer items-center justify-center border-t-2 border-b-2 border-[#4682b4] bg-gradient-to-br from-[#1a2332] via-[#2d4a6b] to-[#1a1611] text-[#87ceeb] transition-all duration-500 hover:flex-[1.2] md:border-t-0 md:border-b-0 md:border-l-2 md:border-r-2"
         >
           <div className="absolute inset-0 overflow-hidden flex items-center justify-center">
@@ -228,7 +225,7 @@ export default function LandingPage({ onSelect }: Props) {
 
         {/* Warrior Section */}
         <section
-          onClick={() => onSelect('warrior')}
+          onClick={() => navigate('/warrior')}
           className="group relative flex flex-1 cursor-pointer items-center justify-center border-t-2 border-[#eab308] bg-gradient-to-br from-[#33260f] via-[#5b4a1a] to-[#1a1611] text-[#eab308] transition-all duration-500 hover:flex-[1.2] md:border-t-0 md:border-l-2"
         >
           <div className="absolute inset-0 overflow-hidden flex items-center justify-center">
