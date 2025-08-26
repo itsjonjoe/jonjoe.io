@@ -1,19 +1,52 @@
-import React from 'react';
+import warrior from './data/warrior.json';
 
 interface Props {
   onBack: () => void;
 }
 
-const glanceStats = [
-  { title: 'Bodyweight', value: '92.4 kg', note: '▼ 0.6 kg/wk' },
-  { title: 'Body Fat', value: '18–20%', note: 'Target <15%' },
-  { title: 'Weekly Deficit', value: '–4,200 kcal', note: '≈0.5 kg loss' },
-  { title: 'Row 10′', value: '2.3 → 2.5 km', note: '' },
-  { title: 'Pull-ups', value: '8 → 12', note: '' },
-  { title: 'Sleep', value: '7.5 h', note: 'Goal 8 h' },
-];
+type GlanceStat = {
+  title: string;
+  value: string;
+  note?: string;
+};
 
-const icons = {
+type IconName = 'axe' | 'shield' | 'raven';
+
+type PersonalBest = {
+  icon: IconName;
+  title: string;
+  value: string;
+  date: string;
+};
+
+type DietItem = {
+  title: string;
+  content?: string;
+  list?: string[];
+};
+
+type TrainingItem = {
+  day: string;
+  plan: string;
+  cals: string;
+};
+
+type SupplementItem = {
+  title: string;
+  list: string[];
+};
+
+interface WarriorData {
+  glanceStats: GlanceStat[];
+  personalBests: PersonalBest[];
+  diet: DietItem[];
+  training: TrainingItem[];
+  supplements: SupplementItem[];
+}
+
+const data = warrior as WarriorData;
+
+const icons: Record<IconName, JSX.Element> = {
   axe: (
     <svg viewBox="0 0 24 24" className="h-5 w-5">
       <path
@@ -40,62 +73,8 @@ const icons = {
   ),
 };
 
-const personalBests = [
-  { icon: icons.axe, title: 'Deadlift', value: '145 kg × 3', date: '2025-08-23' },
-  { icon: icons.shield, title: 'Barbell Row', value: '105 kg × 6', date: '2025-08-26' },
-  { icon: icons.shield, title: 'Back Squat', value: '100 kg × 6', date: 'Baseline' },
-  { icon: icons.raven, title: 'Clean & Press', value: '55 kg × 5', date: '2025-08-23' },
-  { icon: icons.axe, title: 'Flat DB Press', value: '40 kg × 3', date: '2025-08-23' },
-  { icon: icons.raven, title: 'Row (10:33)', value: '2319 m', date: '~137 W avg' },
-];
-
-const diet = [
-  {
-    title: 'Macros',
-    content: '~2,535 kcal/day\nProtein 226 g · Fat 100 g · Carbs 187 g',
-  },
-  {
-    title: 'Meals',
-    list: [
-      '3 eggs, 3× toast, spread, spinach, cottage cheese',
-      '3 eggs, 2× toast, spread, spinach, cottage cheese',
-      '2× whey shakes + yogurt',
-      '2 chicken legs + 60g rice + veg',
-    ],
-  },
-  {
-    title: 'Rules',
-    list: ['No snacks', 'Monster Ultra ≤2 before 17:00', '≥2L water daily'],
-  },
-];
-
-const training = [
-  { day: 'Mon — Chest', plan: 'Bench GVT + Flys', cals: '~632 kcal' },
-  { day: 'Tue — Back', plan: 'Pull-ups · Rows · Pulldown', cals: '~665–700 kcal' },
-  { day: 'Wed — Shoulders', plan: 'Press · Laterals · Upright Rows', cals: '~641 kcal' },
-  { day: 'Thu — Legs', plan: 'Squat · RDL · Lunges', cals: '~701 kcal' },
-  { day: 'Fri — Arms', plan: 'Bicep/Tricep GVT', cals: '~940 kcal' },
-  { day: 'Sat — Pump', plan: 'Chest/Shoulder pump', cals: '~696 kcal' },
-  { day: 'Sun — Recovery', plan: 'Fast walk + sleep focus', cals: '~413 kcal' },
-];
-
-const supplements = [
-  {
-    title: 'Morning Stack',
-    list: [
-      'AREDS2 · Omega-3 · D3',
-      'Ginseng · Lion’s Mane · B12',
-      'Shilajit · Maca · Creatine',
-      'Pump/Beetroot (training/rest)',
-    ],
-  },
-  {
-    title: 'Evening Stack',
-    list: ['Magnesium Glycinate', 'Ashwagandha', 'Omega-3 (optional split)'],
-  },
-];
-
 export default function WarriorPage({ onBack }: Props) {
+  const { glanceStats, personalBests, diet, training, supplements } = data;
   return (
     <div className="min-h-screen bg-[#0b0a08] text-[#f4e8bd]">
       <button
@@ -171,7 +150,7 @@ export default function WarriorPage({ onBack }: Props) {
                 className="relative rounded-lg border border-[#463720] bg-[#13100d] p-4 shadow hover:border-[#eab308] transition"
               >
                 <div className="mb-2 flex items-center justify-center gap-2 text-[#eab308]">
-                  {pb.icon}
+                  {icons[pb.icon]}
                   <div className="text-sm font-semibold tracking-widest">{pb.title}</div>
                 </div>
                 <div className="text-center text-2xl font-bold text-[#ffde8a]">{pb.value}</div>
