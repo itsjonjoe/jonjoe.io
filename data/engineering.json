@@ -1,0 +1,81 @@
+{
+  "stats": [
+    { "value": "10+", "label": "Years of Experience" },
+    { "value": "50+", "label": "Projects Delivered" },
+    { "value": "15+", "label": "Enterprise Clients" },
+    { "value": "100%", "label": "Client Satisfaction" }
+  ],
+  "skills": [
+    { "name": "React Native", "level": "Expert", "width": "95%" },
+    { "name": "TypeScript", "level": "Expert", "width": "90%" },
+    { "name": "Node.js", "level": "Expert", "width": "95%" },
+    { "name": "AWS", "level": "Advanced", "width": "80%" }
+  ],
+  "projects": [
+    {
+      "name": "The Economist",
+      "subtitle": "Visual Journalism Platform",
+      "status": "Completed",
+      "badges": ["50M+ readers", "+40% engagement", "15-person team"],
+      "description": "Led the Visual Journalism Team transformation with next-generation tools and frameworks. Architected scalable data visualization solutions that increased story engagement across 50+ million global readers.",
+      "tags": ["React", "TypeScript", "D3.js", "Node.js"]
+    },
+    {
+      "name": "Toyota",
+      "subtitle": "Legacy System Migration",
+      "status": "Delivered",
+      "badges": ["Zero downtime", "-60% response time", "8 systems migrated"],
+      "description": "Re-platformed 8 legacy systems onto modern web stack. Led distributed teams across 3 time zones through complex technical migrations while maintaining 100% uptime and achieving 60% performance improvement.",
+      "tags": ["AWS", "Microservices", "React", "Node.js"]
+    },
+    {
+      "name": "Guardian",
+      "subtitle": "Mobile Authentication",
+      "status": "Completed",
+      "badges": ["5M+ users", "+25% conversion", "2-week delivery"],
+      "description": "Delivered Apple Sign In for React Native applications. Enhanced mobile experience for 5+ million readers worldwide, increasing mobile auth conversion rates by 25%.",
+      "tags": ["React Native", "iOS", "Android", "OAuth"]
+    },
+    {
+      "name": "British Gas",
+      "subtitle": "Next-Gen Mobile App",
+      "status": "Completed",
+      "badges": ["Engineering Excellence", "SOLID Principles", "Multiple Awards"],
+      "description": "Built next-generation mobile app as part of core team. Won multiple internal awards for engineering excellence and SOLID principles implementation.",
+      "tags": ["React Native", "SOLID", "Redux", "Testing"]
+    },
+    {
+      "name": "Indee Softworks",
+      "subtitle": "Software Consultancy",
+      "status": "Co-Founded",
+      "badges": ["Co-Founder", "Team Builder", "Multiple Clients"],
+      "description": "Co-founded and built something special from the ground up. Led development of multiple client projects and built an engineering team.",
+      "tags": ["Ruby on Rails", "Laravel", "PostgreSQL", "Leadership"]
+    },
+    {
+      "name": "Shell",
+      "subtitle": "Digital R&D Projects",
+      "status": "Completed",
+      "badges": ["R&D Innovation", "Energy Sector", "Digital Solutions"],
+      "description": "Worked on digital R&D projects including Node services and React Native apps. Delivered innovative solutions for energy sector challenges.",
+      "tags": ["React Native", "Node.js", "React", "R&D"]
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "He is able to articulate highly technical subject matter effectively across all stakeholders. Very approachable and down to earth which made it easy for our design function to work well with engineering.",
+      "author": "Rishi Michael Arch",
+      "title": "Senior Product Designer"
+    },
+    {
+      "quote": "Jonjoe is one of the nicest, most dedicated and innovative people I have ever worked with. Always looking to push the boundaries of possibility and with sound logic always delivers to a really high standard.",
+      "author": "Andrew Machin",
+      "title": "Managing Director @ Kounter"
+    },
+    {
+      "quote": "In an increasingly corporate world Jonjoe is a blast of fresh air. You will learn more from overhearing a conversation with Jonjoe than from many more formal training resources.",
+      "author": "Mick Stevens",
+      "title": "Systems Engineer @ BAE Systems"
+    }
+  ]
+}
