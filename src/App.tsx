@@ -2,9 +2,9 @@ import { useState } from 'react';
 import LandingPage from './LandingPage';
 import WarriorPage from './WarriorPage';
 import SkaldPage from './SkaldPage';
-import GymPage from './GymPage';
+import BerserkerPage from './BerserkerPage';
 
-export type Page = 'landing' | 'warrior' | 'skald' | 'gym';
+export type Page = 'landing' | 'warrior' | 'skald' | 'berserker';
 
 const App = () => {
   const [page, setPage] = useState<Page>('landing');
@@ -14,8 +14,8 @@ const App = () => {
       return <WarriorPage onBack={() => setPage('landing')} />;
     case 'skald':
       return <SkaldPage onBack={() => setPage('landing')} />;
-    case 'gym':
-      return <GymPage onBack={() => setPage('landing')} />;
+    case 'berserker':
+      return <BerserkerPage onBack={() => setPage('landing')} />;
     default:
       return <LandingPage onSelect={setPage} />;
   }

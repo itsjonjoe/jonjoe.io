@@ -8,11 +8,11 @@ interface Props {
 const warriorTexts = ['Code Forger', 'System Builder', 'Tech Viking', 'Digital Warrior'];
 const skaldTexts = ['Tale Weaver', 'Word Smith', 'Story Teller', 'Saga Writer'];
 
-const gymTexts = ['Strength Seeker', 'Nutrition Sage', 'Health Warrior', 'Iron Viking'];
+const berserkerTexts = ['Strength Seeker', 'Nutrition Sage', 'Health Warrior', 'Iron Viking'];
 
 const warriorRunes = ['React Native', 'TypeScript', 'Node.js', 'AWS', 'Architecture'];
 const skaldRunes = ['Epic Tales', 'Verses', 'Chronicles', 'Legends', 'Ballads'];
-const gymRunes = ['Weightlifting', 'Macros', 'Consistency', 'Recovery'];
+const berserkerRunes = ['Weightlifting', 'Macros', 'Consistency', 'Recovery'];
 
 const VikingWarriorIcon = () => (
   <svg
@@ -78,7 +78,7 @@ const VikingSkaldIcon = () => (
   </svg>
 );
 
-const VikingGymIcon = () => (
+const VikingBerserkerIcon = () => (
   <svg
     viewBox="0 0 32 32"
     className="w-24 h-24 md:w-32 md:h-32"
@@ -94,17 +94,26 @@ const VikingGymIcon = () => (
     <rect x="11" y="10" width="10" height="6" fill="#fdbcb4" />
   </svg>
 );
+const VikingCrest = ({ className = '' }: { className?: string }) => (
+  <div
+    className={`viking-crest pointer-events-none absolute z-10 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-4 border-[#8b4513] bg-black/60 md:h-20 md:w-20 ${className}`}
+  >
+    <div className="shield-ring ring-outer absolute inset-0 rounded-full border-2 border-[#d4953a]/60 animate-spin-slow" />
+    <div className="shield-ring ring-inner absolute inset-1.5 rounded-full border-2 border-[#d4953a]/60 animate-spin-slower" />
+    <div className="text-2xl font-bold text-[#d4953a]">⚡</div>
+  </div>
+);
 
 export default function LandingPage({ onSelect }: Props) {
   const [warriorIndex, setWarriorIndex] = useState(0);
   const [skaldIndex, setSkaldIndex] = useState(0);
-  const [gymIndex, setGymIndex] = useState(0);
+  const [berserkerIndex, setBerserkerIndex] = useState(0);
 
   useEffect(() => {
     const id = setInterval(() => {
       setWarriorIndex(i => (i + 1) % warriorTexts.length);
       setSkaldIndex(i => (i + 1) % skaldTexts.length);
-      setGymIndex(i => (i + 1) % gymTexts.length);
+      setBerserkerIndex(i => (i + 1) % berserkerTexts.length);
     }, 4000);
     return () => clearInterval(id);
   }, []);
@@ -132,13 +141,8 @@ export default function LandingPage({ onSelect }: Props) {
       </div>
 
       <div className="landing-page relative flex h-screen flex-col md:flex-row">
-        {/* Viking Crest */}
-        <div className="viking-crest pointer-events-none absolute left-1/2 top-1/2 z-10 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-4 border-[#8b4513] bg-black/60 md:h-20 md:w-20">
-          <div className="shield-ring ring-outer absolute inset-0 rounded-full border-2 border-[#d4953a]/60 animate-spin-slow" />
-          <div className="shield-ring ring-inner absolute inset-1.5 rounded-full border-2 border-[#d4953a]/60 animate-spin-slower" />
-          <div className="text-2xl font-bold text-[#d4953a]">⚡</div>
-        </div>
-
+        <VikingCrest className="left-1/2 top-[33.333%] md:top-1/2 md:left-[33.333%]" />
+        <VikingCrest className="left-1/2 top-[66.666%] md:top-1/2 md:left-[66.666%]" />
         {/* Warrior Section */}
         <section
           onClick={() => onSelect('warrior')}
@@ -222,32 +226,32 @@ export default function LandingPage({ onSelect }: Props) {
           </div>
         </section>
 
-        {/* Gym Section */}
+        {/* Berserker Section */}
         <section
-          onClick={() => onSelect('gym')}
-          className="group relative flex flex-1 cursor-pointer items-center justify-center overflow-hidden border-t-2 border-[#10b981] bg-gradient-to-br from-[#0f1a0f] via-[#1b3a1b] to-[#1a1611] text-[#10b981] transition-all duration-500 hover:flex-[1.2] md:border-t-0 md:border-l-2"
+          onClick={() => onSelect('berserker')}
+          className="group relative flex flex-1 cursor-pointer items-center justify-center overflow-hidden border-t-2 border-[#eab308] bg-gradient-to-br from-[#33260f] via-[#5b4a1a] to-[#1a1611] text-[#eab308] transition-all duration-500 hover:flex-[1.2] md:border-t-0 md:border-l-2"
         >
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="title-background text-[4rem] sm:text-[6rem] md:text-[8rem] font-black tracking-widest opacity-10">GYM</div>
+            <div className="title-background text-[4rem] sm:text-[6rem] md:text-[8rem] font-black tracking-widest opacity-10">BERSERKER</div>
           </div>
           <div className="section-content relative z-10 mx-auto flex max-w-xs flex-col items-center text-center">
             <div className="relative mb-6 flex flex-col items-center">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 md:-top-12">
-                <VikingGymIcon />
+                <VikingBerserkerIcon />
               </div>
-              <span className="title-main block pt-28 md:pt-24 text-2xl font-bold tracking-widest md:text-3xl">GYM</span>
+              <span className="title-main block pt-28 md:pt-24 text-2xl font-bold tracking-widest md:text-3xl">BERSERKER</span>
               <span
-                key={gymIndex}
+                key={berserkerIndex}
                 className="title-sub block text-base italic opacity-80 transition-opacity duration-300 md:text-lg"
               >
-                {gymTexts[gymIndex]}
+                {berserkerTexts[berserkerIndex]}
               </span>
             </div>
             <p className="section-description mb-6 font-mono text-xs opacity-90 sm:text-sm">
               Building strength and discipline through iron and nutrition.
             </p>
             <div className="story-runes mb-8 flex flex-wrap justify-center gap-2">
-              {gymRunes.map(r => (
+              {berserkerRunes.map(r => (
                 <span
                   key={r}
                   className="rune-tag rounded border border-current bg-black/30 px-2 py-1 text-xs font-mono sm:text-sm"
