@@ -5,11 +5,9 @@ import SkaldPage from './SkaldPage';
 import SmithPage from './SmithPage';
 
 const SiteOverlay = () => (
-  <div className="pointer-events-none fixed inset-0 z-0 flex flex-col items-center justify-center text-center select-none text-white/5">
+  <div className="pointer-events-none fixed inset-0 z-20 flex flex-col items-center justify-center text-center select-none text-white/10">
     <h1 className="text-5xl md:text-8xl font-black tracking-widest">Jonjoe Whitfield</h1>
-    <p className="mt-2 text-xs md:text-sm tracking-widest">
-      Engineer + Storymaker + Nutrition-driven lifter
-    </p>
+    <p className="mt-2 text-xs md:text-sm tracking-widest">Tagline</p>
     <div className="mt-2 h-px w-32 bg-current opacity-10" />
   </div>
 );
@@ -36,7 +34,7 @@ const App = () => {
 
   return (
     <div className="relative">
-      <SiteOverlay />
+      {page === 'landing' && <SiteOverlay />}
       <div className="relative z-10">{content}</div>
     </div>
   );
