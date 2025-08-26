@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './LandingPage';
 import WarriorPage from './WarriorPage';
 import SkaldPage from './SkaldPage';
@@ -12,32 +12,21 @@ const SiteOverlay = () => (
   </div>
 );
 
-export type Page = 'landing' | 'smith' | 'skald' | 'warrior';
-
-const App = () => {
-  const [page, setPage] = useState<Page>('landing');
-
-  let content: JSX.Element;
-  switch (page) {
-    case 'smith':
-      content = <SmithPage onBack={() => setPage('landing')} />;
-      break;
-    case 'skald':
-      content = <SkaldPage onBack={() => setPage('landing')} />;
-      break;
-    case 'warrior':
-      content = <WarriorPage onBack={() => setPage('landing')} />;
-      break;
-    default:
-      content = <LandingPage onSelect={setPage} />;
-  }
-
-  return (
+const App = () => (
+  <Router>
     <div className="relative">
-      {page === 'landing' && <SiteOverlay />}
-      <div className="relative z-10">{content}</div>
+      <SiteOverlay />
+      
+      <div className="relative z-10">
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/engineering" element={<SmithPage />} />
+          <Route path="/writing" element={<SkaldPage />} />
+          <Route path="/warrior" element={<WarriorPage />} />
+        </Routes>
+      </div>
     </div>
-  );
-};
+  </Router>
+);
 
 export default App;

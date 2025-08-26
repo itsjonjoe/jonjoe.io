@@ -1,8 +1,5 @@
 import warrior from './data/warrior.json';
-
-interface Props {
-  onBack: () => void;
-}
+import { useNavigate } from 'react-router-dom';
 
 type GlanceStat = {
   title: string;
@@ -73,12 +70,13 @@ const icons: Record<IconName, JSX.Element> = {
   ),
 };
 
-export default function WarriorPage({ onBack }: Props) {
+export default function WarriorPage() {
+  const navigate = useNavigate();
   const { glanceStats, personalBests, diet, training, supplements } = data;
   return (
     <div className="min-h-screen bg-[#0b0a08] text-[#f4e8bd]">
       <button
-        onClick={onBack}
+        onClick={() => navigate('/')}
         className="fixed top-4 left-4 rounded border-2 border-[#eab308] bg-black/60 px-4 py-2 text-sm transition hover:bg-[#eab308] hover:text-black md:top-8 md:left-8 md:px-6 md:py-3"
       >
         ← Return to Longhouse
