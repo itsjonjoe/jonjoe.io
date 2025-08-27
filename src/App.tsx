@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import LandingPage from './LandingPage';
 import WarriorPage from './WarriorPage';
 import SkaldPage from './SkaldPage';
@@ -12,11 +12,12 @@ const SiteOverlay = () => (
   </div>
 );
 
-const App = () => (
-  <Router>
+const AppRoutes = () => {
+  const location = useLocation();
+  return (
     <div className="relative">
-      <SiteOverlay />
-      
+      {location.pathname === '/' && <SiteOverlay />}
+
       <div className="relative z-10">
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -26,6 +27,12 @@ const App = () => (
         </Routes>
       </div>
     </div>
+  );
+};
+
+const App = () => (
+  <Router>
+    <AppRoutes />
   </Router>
 );
 
