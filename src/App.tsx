@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'r
 import LandingPage from './pages/LandingPage';
 import WarriorPage from './pages/WarriorPage';
 import SkaldPage from './pages/SkaldPage';
+import PostPage from './pages/PostPage';
 import SmithPage from './pages/SmithPage';
 
 const SiteOverlay = () => (
@@ -25,6 +26,7 @@ const AppRoutes = () => {
           <Route path="/engineering/:tab" element={<SmithPage />} />
           <Route path="/writing" element={<Navigate to="/writing/shorts" replace />} />
           <Route path="/writing/:tab" element={<SkaldPage />} />
+          <Route path="/writing/blog/:slug" element={<PostPage />} />
           <Route path="/warrior" element={<WarriorPage />} />
         </Routes>
       </div>

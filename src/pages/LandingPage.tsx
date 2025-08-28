@@ -32,6 +32,7 @@ export default function LandingPage() {
   const [smithIndex, setSmithIndex] = useState(0);
   const [skaldIndex, setSkaldIndex] = useState(0);
   const [warriorIndex, setWarriorIndex] = useState(0);
+  const [openMobile, setOpenMobile] = useState<'smith' | 'skald' | 'warrior' | null>('smith');
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -41,6 +42,9 @@ export default function LandingPage() {
     }, 4000);
     return () => clearInterval(id);
   }, []);
+
+  const MOBILE_HDR = 72; // px for collapsed header height
+  const openHeight = `calc(100svh - ${MOBILE_HDR * 2 + 16 + 16}px)`; // 2 headers + 2 gaps (8px each) + container top/bottom padding (8px each)
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -70,7 +74,114 @@ export default function LandingPage() {
         </div>
       </div>
 
-      <div className="landing-page relative flex flex-col md:flex-row md:h-screen overflow-visible md:overflow-hidden snap-y md:snap-none snap-mandatory">
+      {/* Mobile Accordion */}
+      <div className="md:hidden relative z-10 p-2 space-y-2 h-[100svh] overflow-hidden">
+        {([
+          {
+            key: 'smith' as const,
+            title: '<Smith />',
+            icon: <VikingSmithIcon className="w-10 h-10" />,
+            bg: 'from-[#2c1810] via-[#4a2c1a] to-[#1a1611]',
+            border: 'border-[#8b4513] text-[#d4953a]',
+            body: (
+              <>
+                <p className="section-description mb-4 font-mono text-sm opacity-90">
+                  Wielding modern weapons to conquer digital realms. Building fortresses that stand the test of time.
+                </p>
+                <ul className="rune-list mb-4 text-left">
+                  {smithRunes.map(r => (
+                    <li key={r} className="font-mono text-sm">{r}</li>
+                  ))}
+                </ul>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-mono opacity-80">Forge</span>
+                  <button onClick={() => navigate('/engineering')} className="text-xs underline">Enter</button>
+                </div>
+              </>
+            ),
+          },
+          {
+            key: 'skald' as const,
+            title: '"Skald"',
+            icon: <VikingSkaldIcon className="w-10 h-10" />,
+            bg: 'from-[#1a2332] via-[#2d4a6b] to-[#1a1611]',
+            border: 'border-[#4682b4] text-[#87ceeb]',
+            body: (
+              <>
+                <p className="section-description mb-4 font-mono text-sm opacity-90">
+                  Crafting sagas that echo through the ages. Words that kindle fire in mortal hearts.
+                </p>
+                <ul className="rune-list mb-4 text-left">
+                  {skaldRunes.map(r => (
+                    <li key={r} className="font-mono text-sm">{r}</li>
+                  ))}
+                </ul>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-mono opacity-80">Recite</span>
+                  <button onClick={() => navigate('/writing')} className="text-xs underline">Enter</button>
+                </div>
+              </>
+            ),
+          },
+          {
+            key: 'warrior' as const,
+            title: '[Warrior]',
+            icon: <VikingWarriorIcon className="w-10 h-10" />,
+            bg: 'from-[#33260f] via-[#5b4a1a] to-[#1a1611]',
+            border: 'border-[#eab308] text-[#eab308]',
+            body: (
+              <>
+                <p className="section-description mb-4 font-mono text-sm opacity-90">
+                  Building strength and discipline through iron and nutrition.
+                </p>
+                <ul className="rune-list mb-4 text-left">
+                  {warriorRunes.map(r => (
+                    <li key={r} className="font-mono text-sm">{r}</li>
+                  ))}
+                </ul>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-mono opacity-80">Train</span>
+                  <button onClick={() => navigate('/warrior')} className="text-xs underline">Enter</button>
+                </div>
+              </>
+            ),
+          },
+        ]).map(section => {
+          const open = openMobile === section.key;
+          return (
+            <div
+              key={section.key}
+              className={`accordion rounded-xl border ${section.border} bg-gradient-to-br ${section.bg}`}
+              style={{
+                maxHeight: open ? openHeight : `${MOBILE_HDR}px`,
+                minHeight: open ? openHeight : `${MOBILE_HDR}px`,
+                padding: '0.5rem',
+              }}
+            >
+              <div className="flex w-full items-center justify-between" style={{ height: MOBILE_HDR }}>
+                <button
+                  onClick={() => setOpenMobile(open ? null : section.key)}
+                  className="flex w-full items-center justify-between"
+                >
+                  <div className="flex items-center gap-3">
+                    {section.icon}
+                    <span className="font-bold tracking-widest">{section.title}</span>
+                  </div>
+                  <span className="text-lg">{open ? '−' : '+'}</span>
+                </button>
+              </div>
+              <div className="text-left overflow-hidden" style={{ maxHeight: open ? `calc(${openHeight} - ${MOBILE_HDR}px - 0.5rem)` : 0 }}>
+                <div className="mt-2">
+                  {open && section.body}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Desktop layout */}
+      <div className="hidden md:flex landing-page relative flex-col md:flex-row md:h-screen overflow-visible md:overflow-hidden snap-y md:snap-none snap-mandatory">
         {/* Smith Section */}
         <section
           onClick={() => navigate('/engineering')}

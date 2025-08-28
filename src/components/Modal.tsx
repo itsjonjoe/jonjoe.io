@@ -38,7 +38,7 @@ export default function Modal({ open, onClose, children, title }: { open: boolea
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4" aria-modal="true" role="dialog" aria-label={title ?? 'Dialog'}>
       {/* Background art: longship subtle behind the dim backdrop */}
-      <div className="absolute inset-0 pointer-events-none flex items-end justify-center pb-6 opacity-30">
+      <div className="absolute inset-0 pointer-events-none hidden sm:flex items-end justify-center pb-6 opacity-30">
         <Longship className="w-[360px] h-[120px] ship-rock" />
       </div>
       {/* Clickable backdrop on top of art */}

@@ -1,5 +1,6 @@
 import BackLink from '../components/ui/BackLink';
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
+import { posts } from '../content/posts';
 import { useEffect, useRef, useState } from 'react';
 import Card from '../components/ui/Card';
 import PixelScribe from '../components/icons/PixelScribe';
@@ -69,7 +70,27 @@ export default function SkaldPage() {
 
         {activeTab === 'shorts' && (<section className="max-w-3xl mx-auto">{WIP}</section>)}
         {activeTab === 'ash-and-hollow' && (<section className="max-w-3xl mx-auto">{WIP}</section>)}
-        {activeTab === 'blog' && (<section className="max-w-3xl mx-auto">{WIP}</section>)}
+        {activeTab === 'blog' && (
+          <section className="max-w-3xl mx-auto">
+            {posts.length === 0 ? (
+              WIP
+            ) : (
+              <div className="space-y-4">
+                {posts.map(p => (
+                  <Card key={p.slug} className="border-[#4682b4] hover:border-[#87ceeb] transition">
+                    <h3 className="text-xl font-semibold" style={{ color: '#87ceeb' }}>{p.title}</h3>
+                    <div className="text-xs opacity-70">{p.date}</div>
+                    {p.summary && <p className="mt-2 opacity-90">{p.summary}</p>}
+                    {p.tags && p.tags.length > 0 && (
+                      <div className="mt-2 text-xs opacity-80">{p.tags.join(' • ')}</div>
+                    )}
+                    <NavLink to={`/writing/blog/${p.slug}`} className="mt-3 inline-block text-sm text-[#87ceeb] hover:underline">Read →</NavLink>
+                  </Card>
+                ))}
+              </div>
+            )}
+          </section>
+        )}
 
         <p className="text-center mt-6 font-mono opacity-70">“In every word lies the power to change a world.”</p>
       </div>

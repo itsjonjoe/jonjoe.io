@@ -16,10 +16,9 @@ export default function BackLink({
     <button
       onClick={() => navigate(to)}
       className={`fixed top-4 left-4 px-4 py-2 text-sm md:top-8 md:left-8 md:px-6 md:py-3 rounded transition bg-black/70 hover:text-white ${className}`}
-      style={{ borderColor: color, borderWidth: 2, } as React.CSSProperties}
+      style={{ borderColor: color, borderWidth: 2, top: 'calc(env(safe-area-inset-top, 0px) + 1rem)', left: 'calc(env(safe-area-inset-left, 0px) + 1rem)' } as React.CSSProperties}
     >
       {label}
     </button>
   );
 }
-

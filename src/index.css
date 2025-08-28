@@ -331,3 +331,53 @@
     line-height: 1.6;
   }
 }
+
+@layer components {
+  /* Mobile accordion helper */
+  .accordion { overflow: hidden; transition: max-height .35s ease, padding .25s ease; }
+}
+
+/* Post typography (scoped to article.post-prose) */
+@layer components {
+  .post-prose { color:#e8e1d1; font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif; line-height:1.75; letter-spacing:.01em; }
+  .post-prose a { color:#87ceeb; text-decoration:underline; text-underline-offset:3px; }
+}
+
+/* Post theme (variables) + reading progress */
+@layer components {
+  .post-theme { --page-max:720px; --gutter:24px; --text:#e6e6e6; --muted:#a8a8a8; --bg:#0e0e0e; --link:#1A8917; --link-visited:#45a043; --rule:#2a2a2a; --quote-bar:#3a3a3a; --code-bg:#171717; }
+  .post-theme.light { --text:#242424; --muted:#6b6b6b; --bg:#ffffff; --link:#1A8917; --link-visited:#156d13; --rule:#e6e6e6; --quote-bar:#d3d3d3; --code-bg:#f6f6f6; }
+  .post-surface { background: var(--bg); color: var(--text); transition: background-color .25s ease, color .25s ease; }
+  .post-prose, .post-prose a, .post-prose h1, .post-prose h2, .post-prose h3, .post-prose h4, .post-prose h5, .post-prose h6 { transition: color .25s ease, background-color .25s ease; }
+
+  .reading-progress { position: fixed; top: 0; left: 0; width: 100%; height: 4px; z-index: 60; background: transparent; }
+  .reading-progress .bar { height: 100%; width: 0%; background: linear-gradient(90deg, #1A8917, #87ceeb); box-shadow: 0 0 10px rgba(26,137,23,0.5); transition: width .06s linear; }
+
+  /* Theme toggle buttons */
+  .theme-toggle { position: fixed; right: 1rem; bottom: 1rem; z-index: 70; display: flex; gap: .5rem; }
+  .theme-toggle button {
+    border: 1px solid var(--rule);
+    color: var(--text);
+    background: rgba(0,0,0,0.1);
+    backdrop-filter: blur(6px);
+    padding: .4rem .6rem;
+    border-radius: .5rem;
+    font-size: .75rem;
+    opacity: .85;
+    transition: background-color .2s ease, opacity .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .theme-toggle button:hover { opacity: 1; }
+  .theme-toggle button.active { background: rgba(26,137,23,0.15); border-color: #1A8917; }
+}
+/* Post typography enhancements */
+@layer components {
+  .post-prose h1, .post-prose h2, .post-prose h3 { font-weight: 800; letter-spacing: .01em; }
+  .post-prose h1 { font-size: clamp(2rem, 1.6rem + 1.6vw, 2.75rem); margin-top: 2.2em; margin-bottom: .9em; }
+  .post-prose h2 { font-size: clamp(1.6rem, 1.35rem + 1vw, 2.1rem); margin-top: 1.9em; margin-bottom: .8em; }
+  .post-prose h3 { font-size: clamp(1.3rem, 1.2rem + .6vw, 1.6rem); margin-top: 1.6em; margin-bottom: .7em; }
+  .post-prose p { margin: 1.25em 0; }
+  .post-prose ul, .post-prose ol { margin: 1.1em 0; padding-left: 1.5em; }
+  .post-prose li > ul, .post-prose li > ol { margin-top: .4em; padding-left: 1.2em; }
+  .post-prose ul { list-style: disc outside; }
+  .post-prose ol { list-style: decimal outside; }
+}
