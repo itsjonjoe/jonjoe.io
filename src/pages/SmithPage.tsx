@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
-import AvailabilityCTA from './components/AvailabilityCTA';
-import engineeringData from '../data/engineering.json';
+import AvailabilityCTA from '../components/AvailabilityCTA';
+import engineeringData from '../../data/engineering.json';
 
 interface Stat {
   value: string;

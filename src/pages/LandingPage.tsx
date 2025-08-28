@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Embers from './components/Embers';
-import Longship from './components/Longship';
-import VikingSmithIcon from './components/icons/VikingSmithIcon';
-import VikingSkaldIcon from './components/icons/VikingSkaldIcon';
-import VikingWarriorIcon from './components/icons/VikingWarriorIcon';
-import Reveal from './components/Reveal';
-import SectionParticles from './components/SectionParticles';
+import Embers from '../components/Embers';
+import Longship from '../components/Longship';
+import VikingSmithIcon from '../components/icons/VikingSmithIcon';
+import VikingSkaldIcon from '../components/icons/VikingSkaldIcon';
+import VikingWarriorIcon from '../components/icons/VikingWarriorIcon';
+import Reveal from '../components/Reveal';
+import SectionParticles from '../components/SectionParticles';
 
 const smithTexts = ['Code Forger', 'System Builder', 'Tech Viking', 'Digital Warrior'];
 const skaldTexts = ['Tale Weaver', 'Word Smith', 'Story Teller', 'Saga Writer'];

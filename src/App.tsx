@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
-import LandingPage from './LandingPage';
-import WarriorPage from './WarriorPage';
-import SkaldPage from './SkaldPage';
-import SmithPage from './SmithPage';
+import LandingPage from './pages/LandingPage';
+import WarriorPage from './pages/WarriorPage';
+import SkaldPage from './pages/SkaldPage';
+import SmithPage from './pages/SmithPage';
 
 const SiteOverlay = () => (
   <div className="pointer-events-none fixed inset-0 z-20 hidden md:flex flex-col items-center justify-center text-center select-none">

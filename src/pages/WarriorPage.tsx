@@ -1,4 +1,4 @@
-import warrior from './data/warrior.json';
+import warrior from '../data/warrior.json';
 import { useNavigate } from 'react-router-dom';
 
 type GlanceStat = {

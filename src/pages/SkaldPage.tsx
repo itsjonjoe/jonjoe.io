@@ -35,4 +35,4 @@ export default function SkaldPage() {
     </div>
   );
 }
-
+// moved to pages/
