@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import LandingPage from './LandingPage';
 import WarriorPage from './WarriorPage';
 import SkaldPage from './SkaldPage';
@@ -21,7 +21,8 @@ const AppRoutes = () => {
       <div className="relative z-10">
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/engineering" element={<SmithPage />} />
+          <Route path="/engineering" element={<Navigate to="/engineering/cv" replace />} />
+          <Route path="/engineering/:tab" element={<SmithPage />} />
           <Route path="/writing" element={<SkaldPage />} />
           <Route path="/warrior" element={<WarriorPage />} />
         </Routes>

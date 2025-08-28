@@ -5,6 +5,8 @@ import Longship from './components/Longship';
 import VikingSmithIcon from './components/icons/VikingSmithIcon';
 import VikingSkaldIcon from './components/icons/VikingSkaldIcon';
 import VikingWarriorIcon from './components/icons/VikingWarriorIcon';
+import Reveal from './components/Reveal';
+import SectionParticles from './components/SectionParticles';
 
 const smithTexts = ['Code Forger', 'System Builder', 'Tech Viking', 'Digital Warrior'];
 const skaldTexts = ['Tale Weaver', 'Word Smith', 'Story Teller', 'Saga Writer'];
@@ -80,7 +82,10 @@ export default function LandingPage() {
                 <VikingSmithIcon className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32" />
               </div>
 
-              <span className="title-main block pt-24 sm:pt-28 md:pt-24 text-2xl font-bold tracking-widest md:text-3xl">{'<Smith />'}</span>
+              <Reveal>
+                <span className="title-main block pt-24 sm:pt-28 md:pt-24 text-2xl font-bold tracking-widest md:text-3xl">{'<Smith />'}</span>
+                <div className="title-rule" />
+              </Reveal>
               <span
                 key={smithIndex}
                 className="title-sub block text-base italic opacity-80 transition-opacity duration-300 md:text-lg"
@@ -88,9 +93,12 @@ export default function LandingPage() {
                 {smithTexts[smithIndex]}
               </span>
             </div>
-            <p className="section-description mb-6 font-mono text-xs opacity-90 sm:text-sm">
-              Wielding modern weapons to conquer digital realms. Building fortresses that stand the test of time.
-            </p>
+            <Reveal>
+              <p className="section-description mb-6 font-mono text-sm sm:text-base md:text-lg font-semibold opacity-95">
+               Wielding modern weapons to conquer digital realms. Building fortresses that stand the test of time.
+              </p>
+            </Reveal>
+            <Reveal>
             <ul className="rune-list mb-8 text-left">
               {smithRunes.map(r => (
                 <li key={r} className="font-mono text-xs sm:text-sm">
@@ -98,12 +106,14 @@ export default function LandingPage() {
                 </li>
               ))}
             </ul>
-            <div className="action-hint flex items-center justify-center gap-2 text-xs font-mono opacity-70 sm:text-sm">
-              <span>Enter the workshop</span>
+            </Reveal>
+            <div className="action-hint flex items-center justify-center gap-2 text-xs font-mono opacity-80 sm:text-sm">
+              <span>Forge</span>
               <span className="axe-indicator animate-axe">⚔️</span>
             </div>
           </div>
           <VikingCrest className="left-1/2 top-full md:top-1/2 md:left-full" />
+          <SectionParticles className="z-0" count={20} colorA="#ffcf78" colorB="#d4953a" />
         </section>
 
         {/* Skald Section */}
@@ -116,7 +126,10 @@ export default function LandingPage() {
               <div className="absolute top-0 left-1/2 -translate-x-1/2 md:-top-12">
                 <VikingSkaldIcon className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32" />
               </div>
-              <span className="title-main block pt-24 sm:pt-28 md:pt-24 text-2xl font-bold tracking-widest md:text-3xl">{"\"Skald\""}</span>
+              <Reveal>
+                <span className="title-main block pt-24 sm:pt-28 md:pt-24 text-2xl font-bold tracking-widest md:text-3xl">{"\"Skald\""}</span>
+                <div className="title-rule" />
+              </Reveal>
               <span
                 key={skaldIndex}
                 className="title-sub block text-base italic opacity-80 transition-opacity duration-300 md:text-lg"
@@ -124,9 +137,12 @@ export default function LandingPage() {
                 {skaldTexts[skaldIndex]}
               </span>
             </div>
-            <p className="section-description mb-6 font-mono text-xs opacity-90 sm:text-sm">
-              Crafting sagas that echo through the ages. Words that kindle fire in mortal hearts.
-            </p>
+            <Reveal>
+              <p className="section-description mb-6 font-mono text-sm sm:text-base md:text-lg font-semibold opacity-95">
+               Crafting sagas that echo through the ages. Words that kindle fire in mortal hearts.
+              </p>
+            </Reveal>
+            <Reveal>
             <ul className="rune-list mb-8 text-left">
               {skaldRunes.map(r => (
                 <li key={r} className="font-mono text-xs sm:text-sm">
@@ -134,12 +150,14 @@ export default function LandingPage() {
                 </li>
               ))}
             </ul>
-            <div className="action-hint flex items-center justify-center gap-2 text-xs font-mono opacity-70 sm:text-sm">
-              <span>Enter the hall</span>
+            </Reveal>
+            <div className="action-hint flex items-center justify-center gap-2 text-xs font-mono opacity-80 sm:text-sm">
+              <span>Recite</span>
               <span className="axe-indicator animate-axe">📜</span>
             </div>
           </div>
           <VikingCrest className="left-1/2 top-full md:top-1/2 md:left-full" />
+          <SectionParticles className="z-0" count={20} colorA="#bfe4ff" colorB="#6fb1de" />
         </section>
 
         {/* Warrior Section */}
@@ -152,7 +170,10 @@ export default function LandingPage() {
               <div className="absolute top-0 left-1/2 -translate-x-1/2 md:-top-12">
                 <VikingWarriorIcon className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32" />
               </div>
-              <span className="title-main block pt-24 sm:pt-28 md:pt-24 text-2xl font-bold tracking-widest md:text-3xl">[Warrior]</span>
+              <Reveal>
+                <span className="title-main block pt-24 sm:pt-28 md:pt-24 text-2xl font-bold tracking-widest md:text-3xl">[Warrior]</span>
+                <div className="title-rule" />
+              </Reveal>
               <span
                 key={warriorIndex}
                 className="title-sub block text-base italic opacity-80 transition-opacity duration-300 md:text-lg"
@@ -160,9 +181,12 @@ export default function LandingPage() {
                 {warriorTexts[warriorIndex]}
               </span>
             </div>
-            <p className="section-description mb-6 font-mono text-xs opacity-90 sm:text-sm">
-              Building strength and discipline through iron and nutrition.
-            </p>
+            <Reveal>
+              <p className="section-description mb-6 font-mono text-sm sm:text-base md:text-lg font-semibold opacity-95">
+               Building strength and discipline through iron and nutrition.
+              </p>
+            </Reveal>
+            <Reveal>
             <ul className="rune-list mb-8 text-left">
               {warriorRunes.map(r => (
                 <li key={r} className="font-mono text-xs sm:text-sm">
@@ -170,11 +194,13 @@ export default function LandingPage() {
                 </li>
               ))}
             </ul>
-            <div className="action-hint flex items-center justify-center gap-2 text-xs font-mono opacity-70 sm:text-sm">
-              <span>Enter the training ground</span>
+            </Reveal>
+            <div className="action-hint flex items-center justify-center gap-2 text-xs font-mono opacity-80 sm:text-sm">
+              <span>Train</span>
               <span className="axe-indicator animate-axe">🏋️</span>
             </div>
           </div>
+          <SectionParticles className="z-0" count={20} colorA="#fff0a6" colorB="#eab308" />
         </section>
       </div>
     </div>

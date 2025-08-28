@@ -162,6 +162,25 @@
     transform-origin: left center;
     transform-box: fill-box;
   }
+
+  /* Reveal on scroll */
+  .reveal { opacity: 0; transform: translateY(8px); transition: opacity .5s ease, transform .5s ease; }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+  /* Section-specific floating particles */
+  @keyframes particle-rise {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    10% { opacity: .6; }
+    50% { transform: translateY(-60vh) translateX(4px); }
+    100% { transform: translateY(-120vh) translateX(-4px); opacity: 0; }
+  }
+  .particle {
+    position: absolute; bottom: -10vh; left: var(--x, 50%);
+    border-radius: 9999px;
+    background: radial-gradient(circle, var(--c1, #ffb74a), var(--c2, #ff6a00) 60%, transparent 61%);
+    box-shadow: 0 0 6px rgba(255, 183, 74, 0.65);
+    animation: particle-rise var(--dur, 14s) linear var(--delay, 0s) infinite;
+  }
 }
 
 @layer components {
@@ -280,6 +299,9 @@
     opacity: 0.85;
   }
   .group:hover .title-sub { opacity: 1; }
+
+  /* Thin title rule for editorial feel */
+  .title-rule { width: 64px; height: 1px; background: currentColor; opacity: .25; margin: 10px auto 12px; }
 
   /* Body text polish */
   .section-description {
