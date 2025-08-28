@@ -46,8 +46,10 @@ export default function LandingPage() {
     return () => clearInterval(id);
   }, []);
 
-  const MOBILE_HDR = 64; // px for collapsed header height (slightly larger)
+  const MOBILE_HDR = 64; // px for collapsed header height (title + icon)
   const MOBILE_PAD = 50; // px top padding for each item
+  const MOBILE_SIDE_PAD = 8; // 0.5rem from inline style
+  const CLOSED_HEIGHT = MOBILE_HDR + MOBILE_PAD + MOBILE_SIDE_PAD; // ensure header fully visible
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -80,8 +82,8 @@ export default function LandingPage() {
       {/* Mobile Accordion */}
       {/* Mobile Title (ghost overlay style) */}
       <div className="md:hidden relative z-10 px-4 pt-6 pb-2 text-center select-none">
-        <h1 className="text-3xl font-black tracking-widest text-white/60">Jonjoe Whitfield</h1>
-        <p className="mt-1 text-xs tracking-widest text-white/40">SMITH • SKALD • WARRIOR</p>
+        <h1 className="text-5xl font-black tracking-widest text-white/60 px-2">Jonjoe Whitfield</h1>
+        <p className="mt-1 text-sm tracking-widest text-white/40">SMITH • SKALD • WARRIOR</p>
         <div className="mt-2 h-px w-24 mx-auto bg-white/10" />
       </div>
 
@@ -177,21 +179,22 @@ export default function LandingPage() {
             <div
               key={section.key}
               className={`accordion rounded-xl border ${section.border} bg-gradient-to-br ${section.bg}`}
-              style={{ maxHeight: open ? 1000 : MOBILE_HDR + MOBILE_PAD, padding: '0.5rem', paddingTop: MOBILE_PAD }}
+              style={{ maxHeight: open ? 1000 : CLOSED_HEIGHT, padding: '0.5rem', paddingTop: MOBILE_PAD }}
             >
               <div className="flex w-full items-center justify-between" style={{ height: MOBILE_HDR }}>
                 <button
                   onClick={() => setOpenMobile(open ? null : section.key)}
-                  className="flex w-full items-center justify-between"
+                  className="flex w-full items-end justify-between"
                 >
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-end gap-3">
                     {section.icon}
-                    <span className="font-bold tracking-widest">{section.title}</span>
+                    <span className="relative font-extrabold tracking-widest text-3xl leading-none top-[-16px]">
+                      {section.title}
+                    </span>
                   </div>
-                  <span className="text-lg">{open ? '−' : '+'}</span>
                 </button>
               </div>
-              <div className="text-left overflow-hidden" style={{ maxHeight: open ? 1000 : 0 }}>
+              <div className="text-left overflow-hidden px-2" style={{ maxHeight: open ? 1000 : 0 }}>
                 <div className="mt-2">
                   {open && section.body}
                 </div>
@@ -237,17 +240,17 @@ export default function LandingPage() {
             </div>
             <Reveal>
               <p className="section-description mb-6 font-mono text-sm sm:text-base md:text-lg font-semibold opacity-95">
-               Wielding modern weapons to conquer digital realms. Building fortresses that stand the test of time.
+                Wielding modern weapons to conquer digital realms. Building fortresses that stand the test of time.
               </p>
             </Reveal>
             <Reveal>
-            <ul className="rune-list mb-8 text-left">
-              {smithRunes.map(r => (
-                <li key={r} className="font-mono text-xs sm:text-sm">
-                  {r}
-                </li>
-              ))}
-            </ul>
+              <ul className="rune-list mb-8 text-left">
+                {smithRunes.map(r => (
+                  <li key={r} className="font-mono text-xs sm:text-sm">
+                    {r}
+                  </li>
+                ))}
+              </ul>
             </Reveal>
             <div className="action-hint flex items-center justify-center gap-2 text-xs font-mono opacity-80 sm:text-sm">
               <span>Forge</span>
@@ -281,17 +284,17 @@ export default function LandingPage() {
             </div>
             <Reveal>
               <p className="section-description mb-6 font-mono text-sm sm:text-base md:text-lg font-semibold opacity-95">
-               Crafting sagas that echo through the ages. Words that kindle fire in mortal hearts.
+                Crafting sagas that echo through the ages. Words that kindle fire in mortal hearts.
               </p>
             </Reveal>
             <Reveal>
-            <ul className="rune-list mb-8 text-left">
-              {skaldRunes.map(r => (
-                <li key={r} className="font-mono text-xs sm:text-sm">
-                  {r}
-                </li>
-              ))}
-            </ul>
+              <ul className="rune-list mb-8 text-left">
+                {skaldRunes.map(r => (
+                  <li key={r} className="font-mono text-xs sm:text-sm">
+                    {r}
+                  </li>
+                ))}
+              </ul>
             </Reveal>
             <div className="action-hint flex items-center justify-center gap-2 text-xs font-mono opacity-80 sm:text-sm">
               <span>Recite</span>
@@ -325,17 +328,17 @@ export default function LandingPage() {
             </div>
             <Reveal>
               <p className="section-description mb-6 font-mono text-sm sm:text-base md:text-lg font-semibold opacity-95">
-               Building strength and discipline through iron and nutrition.
+                Building strength and discipline through iron and nutrition.
               </p>
             </Reveal>
             <Reveal>
-            <ul className="rune-list mb-8 text-left">
-              {warriorRunes.map(r => (
-                <li key={r} className="font-mono text-xs sm:text-sm">
-                  {r}
-                </li>
-              ))}
-            </ul>
+              <ul className="rune-list mb-8 text-left">
+                {warriorRunes.map(r => (
+                  <li key={r} className="font-mono text-xs sm:text-sm">
+                    {r}
+                  </li>
+                ))}
+              </ul>
             </Reveal>
             <div className="action-hint flex items-center justify-center gap-2 text-xs font-mono opacity-80 sm:text-sm">
               <span>Train</span>

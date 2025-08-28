@@ -372,7 +372,7 @@
 /* Post typography enhancements */
 @layer components {
   .post-prose h1, .post-prose h2, .post-prose h3 { font-weight: 800; letter-spacing: .01em; }
-  .post-prose h1 { font-size: clamp(2rem, 1.6rem + 1.6vw, 2.75rem); margin-top: 2.2em; margin-bottom: .9em; }
+  .post-prose h1 { font-size: clamp(2rem, 1.6rem + 1.6vw, 2.75rem); margin-top: 0; margin-bottom: .9em; }
   .post-prose h2 { font-size: clamp(1.6rem, 1.35rem + 1vw, 2.1rem); margin-top: 1.9em; margin-bottom: .8em; }
   .post-prose h3 { font-size: clamp(1.3rem, 1.2rem + .6vw, 1.6rem); margin-top: 1.6em; margin-bottom: .7em; }
   .post-prose p { margin: 1.25em 0; }
