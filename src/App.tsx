@@ -23,7 +23,8 @@ const AppRoutes = () => {
           <Route path="/" element={<LandingPage />} />
           <Route path="/engineering" element={<Navigate to="/engineering/cv" replace />} />
           <Route path="/engineering/:tab" element={<SmithPage />} />
-          <Route path="/writing" element={<SkaldPage />} />
+          <Route path="/writing" element={<Navigate to="/writing/shorts" replace />} />
+          <Route path="/writing/:tab" element={<SkaldPage />} />
           <Route path="/warrior" element={<WarriorPage />} />
         </Routes>
       </div>
