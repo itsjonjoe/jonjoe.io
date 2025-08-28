@@ -1,6 +1,6 @@
-import { NavLink } from 'react-router-dom';
+// no router import; external links
 
-export default function AvailabilityCTA({ className = '' }: { className?: string }) {
+export default function AvailabilityCTA({ className = '', onOpenModal }: { className?: string; onOpenModal?: () => void }) {
   return (
     <div
       className={`relative mx-auto max-w-2xl overflow-hidden rounded-2xl border-2 border-[#8b4513] bg-black/40 p-8 sm:p-10 md:p-12 ${className}`}
@@ -28,20 +28,21 @@ export default function AvailabilityCTA({ className = '' }: { className?: string
       </p>
 
       <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
-        <a
-          href="mailto:contact@jonjoe.dev?subject=Project%20Inquiry"
+        <button
+          onClick={onOpenModal}
           className="inline-flex items-center justify-center rounded-md bg-[#d4953a] px-5 py-2.5 text-[#1a1611] font-semibold shadow-[0_8px_25px_rgba(212,149,58,0.25)] transition-transform hover:-translate-y-0.5"
         >
           Start a Conversation
-        </a>
-        <NavLink
-          to="/engineering/cv"
+        </button>
+        <a
+          href="https://docs.google.com/document/d/1xK96OAMjKLgN-RWbBTvlHVtniVNxrDJ-qX1YmzB4OUU/export?format=pdf"
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center justify-center rounded-md border border-[#d4953a] px-5 py-2.5 text-[#d4953a] hover:bg-[#d4953a]/10"
         >
-          View CV
-        </NavLink>
+          View CV (PDF)
+        </a>
       </div>
     </div>
   );
 }
-

@@ -1,0 +1,93 @@
+[
+  {
+    "title": "Apprentice Developer – Adido",
+    "period": "Jun 2012 – Sep 2012 · 4 mos",
+    "summary": "Laid the foundations of full-stack development. Learned to untangle legacy systems, troubleshoot live issues, and build confidence in client communication and delivery.",
+    "tech": "Legacy systems, early web development"
+  },
+  {
+    "title": "Jnr Support Developer – Adido",
+    "period": "Sep 2012 – Mar 2014 · 1 yr 6 mos",
+    "summary": "Supported critical client platforms while staying ahead of industry changes. Balanced rapid fixes with proactive advice, helping clients avoid costly downtime.",
+    "tech": "Web support, client systems"
+  },
+  {
+    "title": "Web Developer (Freelance)",
+    "period": "Apr 2014 – Sep 2014 · 6 mos",
+    "summary": "Delivered bespoke webapps and sites for a range of clients. Combined design and engineering to create polished, functional products.",
+    "tech": "General web stack"
+  },
+  {
+    "title": "Co-Founder & Developer Lead – Indee Softworks Ltd",
+    "period": "Aug 2014 – Jul 2017 · 3 yrs",
+    "summary": "Co-founded and scaled a software company from scratch. Shipped complex client solutions under NDA, while driving the technical strategy across the business.",
+    "tech": "Ruby on Rails, Laravel, Bootstrap"
+  },
+  {
+    "title": "Contracted – Senior Engineer – SapientRazorfish",
+    "period": "Apr 2017 – Mar 2018 · 1 yr",
+    "summary": "Engineered the next-gen British Gas mobile app as part of a cross-functional team. Led on best practices, mentored engineers, and won multiple internal awards for innovation and impact.",
+    "tech": "React Native, mobile app development"
+  },
+  {
+    "title": "Contracted – Senior Engineer – comparethemarket.com",
+    "period": "Mar 2018 – May 2018 · 3 mos",
+    "summary": "Built a high-performance middleware microservice with a functional, monadic Node.js design. Streamlined workflows by introducing integrations that reduced repetitive overhead.",
+    "tech": "Node.js (functional, monadic)"
+  },
+  {
+    "title": "Contracted – Senior Engineer – Shell",
+    "period": "Nov 2018 – Jan 2019 · 3 mos",
+    "summary": "Delivered rapid prototypes and R&D projects spanning Node.js services and React Native apps. Contributed to Shell’s push into digital platforms.",
+    "tech": "Node.js, React Native"
+  },
+  {
+    "title": "Contracted – Technical Lead – EVRYTHNG",
+    "period": "Jan 2019 – Jul 2019 · 7 mos",
+    "summary": "Designed and delivered a complex React Native application end-to-end in just three months. Coordinated rollout with teams in Vietnam, overcoming moving targets, tight deadlines, and high client expectations.",
+    "tech": "React Native"
+  },
+  {
+    "title": "Contracted – Technical Lead – Pizza Hut Digital Ventures",
+    "period": "Jul 2019 – Sep 2019 · 3 mos",
+    "summary": "Overhauled the Pizza Hut mobile app in record time. Introduced SOLID patterns, Redux modules, and TypeScript compliance, migrating the app to Expo with fast, clean deployments. Also led a Node microservices team.",
+    "tech": "React Native, Expo, Redux, TypeScript, Node.js"
+  },
+  {
+    "title": "Contracted – Senior Mobile Engineer – Guardian News & Media",
+    "period": "Feb 2020 – May 2020 · 4 mos",
+    "summary": "Delivered Apple Sign In integration for the Editions React Native app, ensuring seamless compliance with Apple’s requirements while maintaining a smooth user experience.",
+    "tech": "React Native, TypeScript, Apple Sign In, Complex B2B & Internal APIs"
+  },
+  {
+    "title": "Contracted – Principle Engineer – Toyota Motor Corporation",
+    "period": "Mar 2020 – Sep 2020 · 7 mos",
+    "summary": "Partnered with distributed teams to re-platform legacy systems onto a modern web stack. Led knowledge transfer to up-skill engineers, ensuring long-term maintainability.",
+    "tech": "Node.js, React, modern web stack"
+  },
+  {
+    "title": "Principle Engineer – Hy Zoku",
+    "period": "Oct 2020 – Oct 2021 · 1 yr 1 mo",
+    "summary": "Contributed to confidential R&D projects with a focus on high-impact system design and future-facing architecture.",
+    "tech": "Confidential"
+  },
+  {
+    "title": "Principle Architect – The Economist",
+    "period": "Apr 2021 – Aug 2022 · 1 yr 5 mos",
+    "summary": "Directed the Visual Journalism team in building the next generation of tools and frameworks. Drove the architectural vision that modernised The Economist’s approach to digital storytelling.",
+    "tech": "Custom frameworks and data tools"
+  },
+  {
+    "title": "Principle Mobile Engineer – Ember",
+    "period": "Sep 2022 – Dec 2022 · 4 mos",
+    "summary": "Turned around a failing mobile app, transforming it into a stable, maintainable product ready for production.",
+    "tech": "React Native"
+  },
+  {
+    "title": "Mobile Engineer – Bloom Coaching",
+    "period": "Jan 2023 – Aug 2023 · 8 mos",
+    "summary": "Built Bloom’s mobile app from the ground up. Integrated Firebase, GraphQL, and Apollo while ensuring robust performance and scalability.",
+    "tech": "React Native, Firebase, Node.js, TypeScript, GraphQL, Apollo"
+  }
+]
+
