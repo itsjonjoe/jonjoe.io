@@ -1,4 +1,5 @@
 import warrior from '../data/warrior.json';
+import BackLink from '../components/ui/BackLink';
 import { useNavigate } from 'react-router-dom';
 
 type GlanceStat = {
@@ -75,12 +76,7 @@ export default function WarriorPage() {
   const { glanceStats, personalBests, diet, training, supplements } = data;
   return (
     <div className="min-h-screen bg-[#0b0a08] text-[#f4e8bd]">
-      <button
-        onClick={() => navigate('/')}
-        className="fixed top-4 left-4 rounded border-2 border-[#eab308] bg-black/60 px-4 py-2 text-sm transition hover:bg-[#eab308] hover:text-black md:top-8 md:left-8 md:px-6 md:py-3"
-      >
-        ← Return to Longhouse
-      </button>
+      <BackLink color="#eab308" className="text-black hover:text-black" />
 
       <div className="mx-auto max-w-6xl p-4 pt-20 space-y-10 md:pt-24">
         {/* Hero */}

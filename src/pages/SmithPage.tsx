@@ -2,6 +2,10 @@ import React from 'react';
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import AvailabilityCTA from '../components/AvailabilityCTA';
 import engineeringData from '../../data/engineering.json';
+import BackLink from '../components/ui/BackLink';
+import Card from '../components/ui/Card';
+import ProgressBar from '../components/ui/ProgressBar';
+import ProjectCard from '../components/ProjectCard';
 
 interface Stat {
   value: string;
@@ -45,12 +49,7 @@ export default function SmithPage() {
   const activeTab = (tab === 'work-experience' || tab === 'projects') ? tab : 'cv';
   return (
     <div className="min-h-screen bg-[#1a1611] p-4 text-[#d4953a] md:p-8">
-      <button
-        onClick={() => navigate('/')}
-        className="fixed top-4 left-4 rounded border-2 border-[#8b4513] bg-black/80 px-4 py-2 transition hover:bg-[#8b4513] hover:text-white md:top-8 md:left-8 md:px-6 md:py-3"
-      >
-        ← Return to Longhouse
-      </button>
+      <BackLink color="#8b4513" />
 
       <div className="mx-auto mt-20 max-w-5xl space-y-8 md:mt-24 md:space-y-12">
         {/* Hero Section */}
@@ -90,10 +89,10 @@ export default function SmithPage() {
               <h3 className="text-3xl mb-8 text-center">Professional Overview</h3>
               <div className="grid gap-6 grid-cols-2 md:grid-cols-4 max-w-3xl mx-auto">
                 {stats.map((s) => (
-                  <div key={s.label} className="bg-black/50 border border-[#8b4513] rounded-lg p-6 text-center">
+                  <Card key={s.label} className="text-center">
                     <div className="font-mono text-2xl font-bold text-[#d4953a]">{s.value}</div>
                     <div className="text-sm opacity-80">{s.label}</div>
-                  </div>
+                  </Card>
                 ))}
               </div>
             </section>
@@ -103,16 +102,11 @@ export default function SmithPage() {
               <h3 className="text-3xl mb-8 text-center">Technical Skills</h3>
               <div className="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
                 {skills.map((skill) => (
-                  <div
-                    key={skill.name}
-                    className="bg-black/50 border border-[#8b4513] rounded-lg p-6 transition transform hover:border-[#d4953a] hover:-translate-y-0.5"
-                  >
+                  <Card key={skill.name} className="transition transform hover:-translate-y-0.5">
                     <div className="font-semibold text-[#d4953a] mb-1">{skill.name}</div>
                     <div className="font-mono text-sm mb-4">{skill.level}</div>
-                    <div className="h-1.5 bg-[#d4953a]/20 rounded">
-                      <div className="h-full bg-[#d4953a] rounded" style={{ width: skill.width }}></div>
-                    </div>
-                  </div>
+                    <ProgressBar value={skill.width} />
+                  </Card>
                 ))}
               </div>
             </section>
@@ -125,17 +119,14 @@ export default function SmithPage() {
               </p>
               <div className="grid gap-8 max-w-4xl mx-auto">
                 {testimonials.map((t) => (
-                  <div
-                    key={t.author}
-                    className="relative rounded-xl border border-[#8b4513] bg-black/50 p-6 transition hover:-translate-y-1 hover:border-[#d4953a] md:p-8"
-                  >
+                  <Card key={t.author} className="relative transition hover:-translate-y-1">
                     <div className="absolute top-5 left-6 text-5xl font-bold opacity-20 text-[#d4953a]">"</div>
                     <p className="relative text-lg leading-relaxed mb-6 opacity-90 pl-4">{t.quote}</p>
                     <div className="text-right font-semibold text-[#d4953a]">
                       {t.author}
                       <div className="text-sm opacity-70 font-normal">{t.title}</div>
                     </div>
-                  </div>
+                  </Card>
                 ))}
               </div>
             </section>
@@ -150,42 +141,7 @@ export default function SmithPage() {
             </p>
             <div className="grid gap-8 max-w-5xl mx-auto">
               {projects.map((proj) => (
-                <div
-                  key={proj.name}
-                  className="transform rounded-xl border border-[#8b4513] bg-black/50 p-6 transition hover:-translate-y-1 hover:border-[#d4953a] md:p-8"
-                >
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                    <div>
-                      <h4 className="text-2xl font-bold mb-1 text-[#d4953a]">{proj.name}</h4>
-                      <p className="opacity-80">{proj.subtitle}</p>
-                    </div>
-                    <div className="flex items-center gap-2 text-[#10b981] font-mono text-sm mt-2 md:mt-0">
-                      <span className="w-2 h-2 bg-[#10b981] rounded-full shadow-[0_0_4px_#10b981]"></span>
-                      <span>{proj.status}</span>
-                    </div>
-                  </div>
-                  <div className="flex gap-2 flex-wrap mb-4">
-                    {proj.badges.map((b) => (
-                      <span
-                        key={b}
-                        className="bg-[#d4953a]/10 border border-[#d4953a]/30 text-[#d4953a] px-3 py-1 rounded-full text-xs font-mono"
-                      >
-                        {b}
-                      </span>
-                    ))}
-                  </div>
-                  <p className="opacity-90 leading-relaxed mb-4">{proj.description}</p>
-                  <div className="flex gap-2 flex-wrap">
-                    {proj.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="bg-[#d4953a]/10 border border-[#d4953a]/20 text-[#d4953a] px-2 py-0.5 rounded text-xs font-mono"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                <ProjectCard key={proj.name} project={proj} />
               ))}
             </div>
           </section>

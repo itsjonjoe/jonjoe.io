@@ -1,15 +1,11 @@
+import BackLink from '../components/ui/BackLink';
 import { useNavigate } from 'react-router-dom';
 
 export default function SkaldPage() {
   const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-[#1a1611] p-4 text-[#87ceeb] md:p-8">
-      <button
-        onClick={() => navigate('/')}
-        className="fixed top-4 left-4 rounded border-2 border-[#4682b4] bg-black/80 px-4 py-2 transition hover:bg-[#4682b4] hover:text-white md:top-8 md:left-8 md:px-6 md:py-3"
-      >
-        ← Return to Longhouse
-      </button>
+      <BackLink color="#4682b4" />
 
       <div className="mx-auto mt-20 max-w-3xl space-y-12 text-center md:mt-24">
         <div>
