@@ -46,8 +46,11 @@ export const posts: PostMeta[] = Object.entries(files)
   .map(([path, raw]) => {
     const { meta } = parseFrontmatter(raw);
     const slug = meta.slug || slugFromPath(path);
+    const prettyTitle = (meta.title && String(meta.title).trim().length > 0)
+      ? meta.title
+      : slug.replace(/[-_]+/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
     return {
-      title: meta.title || slug,
+      title: prettyTitle,
       date: meta.date || '',
       slug,
       summary: meta.summary || '',
@@ -65,7 +68,9 @@ export async function loadPost(slug: string): Promise<{ meta: PostMeta; markdown
     if (path.includes(`/${slug}/index.md`) || path.endsWith(`/${slug}.md`)) {
       const { meta, body } = parseFrontmatter(raw);
       const pm: PostMeta = {
-        title: meta.title || slug,
+        title: (meta.title && String(meta.title).trim().length > 0)
+          ? meta.title
+          : slug.replace(/[-_]+/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase()),
         date: meta.date || '',
         slug,
         summary: meta.summary || '',
@@ -82,7 +87,9 @@ export async function loadPost(slug: string): Promise<{ meta: PostMeta; markdown
   const { meta, body } = parseFrontmatter(raw);
   return {
     meta: {
-      title: meta.title || slug,
+      title: (meta.title && String(meta.title).trim().length > 0)
+        ? meta.title
+        : slug.replace(/[-_]+/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase()),
       date: meta.date || '',
       slug,
       summary: meta.summary || '',
