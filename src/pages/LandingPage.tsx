@@ -7,6 +7,8 @@ import VikingSkaldIcon from '../components/icons/VikingSkaldIcon';
 import VikingWarriorIcon from '../components/icons/VikingWarriorIcon';
 import Reveal from '../components/Reveal';
 import SectionParticles from '../components/SectionParticles';
+import Modal from '../components/Modal';
+import ContactList from '../components/ContactList';
 
 const smithTexts = ['Code Forger', 'System Builder', 'Tech Viking', 'Digital Warrior'];
 const skaldTexts = ['Tale Weaver', 'Word Smith', 'Story Teller', 'Saga Writer'];
@@ -33,6 +35,7 @@ export default function LandingPage() {
   const [skaldIndex, setSkaldIndex] = useState(0);
   const [warriorIndex, setWarriorIndex] = useState(0);
   const [openMobile, setOpenMobile] = useState<'smith' | 'skald' | 'warrior' | null>('smith');
+  const [contactOpen, setContactOpen] = useState(false);
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -43,8 +46,8 @@ export default function LandingPage() {
     return () => clearInterval(id);
   }, []);
 
-  const MOBILE_HDR = 72; // px for collapsed header height
-  const openHeight = `calc(100svh - ${MOBILE_HDR * 2 + 16 + 16}px)`; // 2 headers + 2 gaps (8px each) + container top/bottom padding (8px each)
+  const MOBILE_HDR = 64; // px for collapsed header height (slightly larger)
+  const MOBILE_PAD = 50; // px top padding for each item
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -75,7 +78,14 @@ export default function LandingPage() {
       </div>
 
       {/* Mobile Accordion */}
-      <div className="md:hidden relative z-10 p-2 space-y-2 h-[100svh] overflow-hidden">
+      {/* Mobile Title (ghost overlay style) */}
+      <div className="md:hidden relative z-10 px-4 pt-6 pb-2 text-center select-none">
+        <h1 className="text-3xl font-black tracking-widest text-white/60">Jonjoe Whitfield</h1>
+        <p className="mt-1 text-xs tracking-widest text-white/40">SMITH • SKALD • WARRIOR</p>
+        <div className="mt-2 h-px w-24 mx-auto bg-white/10" />
+      </div>
+
+      <div className="md:hidden relative z-10 p-2 space-y-2">
         {([
           {
             key: 'smith' as const,
@@ -93,9 +103,14 @@ export default function LandingPage() {
                     <li key={r} className="font-mono text-sm">{r}</li>
                   ))}
                 </ul>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono opacity-80">Forge</span>
-                  <button onClick={() => navigate('/engineering')} className="text-xs underline">Enter</button>
+                <div className="mt-2">
+                  <button
+                    aria-label="Enter the workshop"
+                    onClick={() => navigate('/engineering')}
+                    className="w-full rounded-lg bg-[#d4953a] py-3 text-center text-sm font-semibold text-black shadow-[0_6px_16px_rgba(212,149,58,0.45)] active:translate-y-px"
+                  >
+                    Enter the workshop
+                  </button>
                 </div>
               </>
             ),
@@ -116,9 +131,14 @@ export default function LandingPage() {
                     <li key={r} className="font-mono text-sm">{r}</li>
                   ))}
                 </ul>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono opacity-80">Recite</span>
-                  <button onClick={() => navigate('/writing')} className="text-xs underline">Enter</button>
+                <div className="mt-2">
+                  <button
+                    aria-label="Enter the hall"
+                    onClick={() => navigate('/writing')}
+                    className="w-full rounded-lg bg-[#4682b4] py-3 text-center text-sm font-semibold text-black shadow-[0_6px_16px_rgba(70,130,180,0.45)] active:translate-y-px"
+                  >
+                    Enter the hall
+                  </button>
                 </div>
               </>
             ),
@@ -139,9 +159,14 @@ export default function LandingPage() {
                     <li key={r} className="font-mono text-sm">{r}</li>
                   ))}
                 </ul>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono opacity-80">Train</span>
-                  <button onClick={() => navigate('/warrior')} className="text-xs underline">Enter</button>
+                <div className="mt-2">
+                  <button
+                    aria-label="Enter the training ground"
+                    onClick={() => navigate('/warrior')}
+                    className="w-full rounded-lg bg-[#eab308] py-3 text-center text-sm font-semibold text-black shadow-[0_6px_16px_rgba(234,179,8,0.45)] active:translate-y-px"
+                  >
+                    Enter the training ground
+                  </button>
                 </div>
               </>
             ),
@@ -152,11 +177,7 @@ export default function LandingPage() {
             <div
               key={section.key}
               className={`accordion rounded-xl border ${section.border} bg-gradient-to-br ${section.bg}`}
-              style={{
-                maxHeight: open ? openHeight : `${MOBILE_HDR}px`,
-                minHeight: open ? openHeight : `${MOBILE_HDR}px`,
-                padding: '0.5rem',
-              }}
+              style={{ maxHeight: open ? 1000 : MOBILE_HDR + MOBILE_PAD, padding: '0.5rem', paddingTop: MOBILE_PAD }}
             >
               <div className="flex w-full items-center justify-between" style={{ height: MOBILE_HDR }}>
                 <button
@@ -170,7 +191,7 @@ export default function LandingPage() {
                   <span className="text-lg">{open ? '−' : '+'}</span>
                 </button>
               </div>
-              <div className="text-left overflow-hidden" style={{ maxHeight: open ? `calc(${openHeight} - ${MOBILE_HDR}px - 0.5rem)` : 0 }}>
+              <div className="text-left overflow-hidden" style={{ maxHeight: open ? 1000 : 0 }}>
                 <div className="mt-2">
                   {open && section.body}
                 </div>
@@ -178,6 +199,16 @@ export default function LandingPage() {
             </div>
           );
         })}
+      </div>
+
+      {/* Say Hello CTA for mobile */}
+      <div className="md:hidden fixed left-2 right-2 bottom-2 z-20">
+        <button
+          onClick={() => setContactOpen(true)}
+          className="w-full rounded-lg bg-[#d4953a] py-3 text-center text-sm font-semibold text-black shadow-[0_6px_16px_rgba(212,149,58,0.45)] active:translate-y-px"
+        >
+          Say Hello
+        </button>
       </div>
 
       {/* Desktop layout */}
@@ -314,6 +345,9 @@ export default function LandingPage() {
           <SectionParticles className="z-0" count={20} colorA="#fff0a6" colorB="#eab308" />
         </section>
       </div>
+      <Modal open={contactOpen} onClose={() => setContactOpen(false)} title="Say Hello">
+        <ContactList />
+      </Modal>
     </div>
   );
 }
