@@ -96,6 +96,207 @@
   }
   .ship-rock { animation: ship-rock 6s ease-in-out infinite; }
 
+  /* Stronger, click-triggered rocking */
+  @keyframes ship-rock-strong {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-4px) rotate(3deg); }
+    50% { transform: translateY(2px) rotate(-3deg); }
+    75% { transform: translateY(-3px) rotate(2deg); }
+  }
+  .ship-rock-strong { animation: ship-rock-strong 2s ease-in-out 3; }
+
+  /* Pixel Viking runner animation: start at center hut, go right, pause, go left, pause, return center, enter hut */
+  @keyframes runner-path {
+    0%   { transform: translate(96px, 32px) scaleX(1); opacity: 0; }   /* in hut (center), hidden */
+    8%   { transform: translate(96px, 32px) scaleX(1); opacity: 1; }   /* exit hut, visible */
+    23%  { transform: translate(170px, 32px) scaleX(1); opacity: 1; }  /* reach right end (quicker) */
+    56%  { transform: translate(170px, 32px) scaleX(-1); opacity: 1; } /* 2s pause + turn */
+    81%  { transform: translate(40px, 32px) scaleX(-1); opacity: 1; }  /* slower to left (not as far) */
+    86%  { transform: translate(40px, 32px) scaleX(1); opacity: 1; }   /* short pause + turn */
+    100% { transform: translate(96px, 32px) scaleX(1); opacity: 0; }   /* return center, enter hut */
+  }
+  .viking-runner {
+    animation: runner-path 6s steps(24, end) 1 both;
+    transform-box: fill-box;
+    transform-origin: 0 0;
+    will-change: transform, opacity;
+  }
+
+  /* Simple leg stride for the sprite */
+  @keyframes runner-legs {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25%      { transform: translateY(0.3px) rotate(4deg); }
+    50%      { transform: translateY(0) rotate(0deg); }
+    75%      { transform: translateY(0.3px) rotate(-4deg); }
+  }
+  .viking-runner-legs {
+    animation: runner-legs 420ms steps(2, end) infinite;
+    transform-box: fill-box;
+    transform-origin: 50% 0%;
+  }
+
+  /* Subtle bob synced to steps for gated motion */
+  @keyframes runner-bob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-0.6px); }
+  }
+  .viking-runner-sprite { animation: runner-bob 420ms steps(2, end) infinite; }
+
+  /* Head look/tilt timed to pauses at ends */
+  @keyframes runner-look {
+    0%, 18% { transform: rotate(0deg); }
+    26%     { transform: rotate(8deg); }
+    36%     { transform: rotate(-6deg); }
+    56%     { transform: rotate(0deg); }
+    82%     { transform: rotate(0deg); }
+    86%     { transform: rotate(-6deg); }
+    90%     { transform: rotate(6deg); }
+    100%    { transform: rotate(0deg); }
+  }
+  .viking-head { animation: runner-look 6s linear 1 forwards; }
+
+  /* Raise a hand to brow when looking */
+  @keyframes hand-shade {
+    0%, 22% { opacity: 0; transform: translateY(0); }
+    26%, 40% { opacity: 1; transform: translateY(-0.4px); }
+    42%, 84% { opacity: 0; transform: translateY(0); }
+    86%, 90% { opacity: 1; transform: translateY(-0.4px); }
+    92%, 100% { opacity: 0; transform: translateY(0); }
+  }
+  .viking-hand-shade { animation: hand-shade 6s linear 1 forwards; }
+
+  /* Alert pop when at starboard pause (runner 1) */
+  @keyframes runner-alert-pop {
+    0%, 22% { opacity: 0; transform: translateY(0) scale(0.7); }
+    24%     { opacity: 1; transform: translateY(-1.5px) scale(1.15); }
+    32%     { opacity: 1; transform: translateY(-1.7px) scale(1.22); }
+    46%     { opacity: 1; transform: translateY(-1.9px) scale(1.28); } /* linger a bit longer */
+    56%     { opacity: 0; transform: translateY(-3px) scale(1.3); }
+    100%    { opacity: 0; transform: translateY(0) scale(0.7); }
+  }
+  .viking-alert-right { animation: runner-alert-pop 6s linear 1 forwards; }
+
+  /* Alert pop when at port pause (runner 1) */
+  @keyframes runner-alert-pop-left {
+    0%, 80% { opacity: 0; transform: translateY(0) scale(0.7); }
+    82%     { opacity: 1; transform: translateY(-1.2px) scale(1.1); }
+    85%     { opacity: 1; transform: translateY(-1.5px) scale(1.18); }
+    90%     { opacity: 0; transform: translateY(-2.6px) scale(1.22); }
+    100%    { opacity: 0; transform: translateY(0) scale(0.7); }
+  }
+  .viking-alert-left { animation: runner-alert-pop-left 6s linear 1 forwards; }
+
+  /* Second Viking: different route (starts left), staggered start */
+  @keyframes runner2-path {
+    0%   { transform: translate(96px, 32px) scaleX(-1); opacity: 0; }  /* in hut, facing left */
+    8%   { transform: translate(96px, 32px) scaleX(-1); opacity: 1; }  /* exit hut */
+    28%  { transform: translate(46px, 32px) scaleX(-1); opacity: 1; }  /* arrive near left mid (earlier) */
+    70%  { transform: translate(46px, 32px) scaleX(1);  opacity: 1; }  /* long pause while fallen, turned */
+    92%  { transform: translate(165px, 32px) scaleX(1); opacity: 1; }  /* dash to starboard */
+    100% { transform: translate(96px, 32px) scaleX(-1); opacity: 0; } /* return hut */
+  }
+.viking-runner.viking-runner-2 {
+  animation: runner2-path 7s steps(30, end) 1 both;
+  animation-delay: 1s;
+}
+  /* Slightly different cadence for the second Viking */
+  .viking-runner-2 .viking-runner-legs { animation: runner-legs 380ms steps(2, end) infinite; }
+  .viking-runner-2 .viking-runner-sprite { animation: runner-bob 380ms steps(2, end) infinite; }
+
+  /* Runner 2 fall-over: trip near left pause, lie down briefly, get up */
+  @keyframes runner2-fall {
+    0%, 31% { transform: rotate(0deg) translate(0, 0); }
+    34%     { transform: rotate(-50deg) translate(-1px, 1px); }
+    38%     { transform: rotate(-120deg) translate(-3px, 2px); } /* hard slip */
+    42%     { transform: rotate(-90deg) translate(-2px, 2px); }  /* bounce up */
+    46%     { transform: rotate(-110deg) translate(-3px, 3px); } /* settle */
+    66%     { transform: rotate(-105deg) translate(-2px, 3px); } /* lie for several seconds */
+    70%     { transform: rotate(-30deg) translate(-1px, 1px); }  /* start rising */
+    74%     { transform: rotate(0deg) translate(0, 0); }        /* back up */
+    100%    { transform: rotate(0deg) translate(0, 0); }
+  }
+.viking-runner-2 .viking-sprite-wrap {
+  animation: runner2-fall 7s cubic-bezier(.25,.75,.25,1) 1 both;
+  animation-delay: 1s;
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+  /* Skid lines for runner 2 during fall */
+  @keyframes runner2-skid {
+    0%, 33% { opacity: 0; transform: translateX(0) scaleX(1); }
+    36%     { opacity: .8; transform: translateX(-1px) scaleX(1.1); }
+    44%     { opacity: .6; transform: translateX(-2px) scaleX(1.2); }
+    50%     { opacity: .35; transform: translateX(-2.5px) scaleX(1.25); }
+    60%     { opacity: 0; transform: translateX(-3px) scaleX(1.3); }
+    100%    { opacity: 0; transform: translateX(-3px) scaleX(1.3); }
+  }
+.viking-runner-2 .viking-skid {
+  animation: runner2-skid 7s linear 1 both;
+  animation-delay: 1s;
+  transform-box: fill-box;
+  transform-origin: 0 50%;
+}
+
+  /* Head/hand/alert timings tailored to runner2 path */
+  @keyframes runner2-look {
+    0%, 24% { transform: rotate(0deg); }
+    32%     { transform: rotate(-8deg); }  /* looking left */
+    42%     { transform: rotate(0deg); }
+    74%     { transform: rotate(6deg); }   /* quick scan right */
+    84%     { transform: rotate(0deg); }
+    100%    { transform: rotate(0deg); }
+  }
+.viking-runner-2 .viking-head {
+  animation: runner2-look 7s linear 1 forwards;
+  animation-delay: 1s;
+}
+
+  @keyframes hand-shade-2 {
+    0%, 26% { opacity: 0; transform: translateY(0); }
+    30%, 40% { opacity: 1; transform: translateY(-0.4px); } /* shade eyes on port */
+    42%, 100% { opacity: 0; transform: translateY(0); }
+  }
+.viking-runner-2 .viking-hand-shade {
+  animation: hand-shade-2 7s linear 1 forwards;
+  animation-delay: 1s;
+}
+
+  @keyframes runner-alert-pop-2 {
+    0%, 68% { opacity: 0; transform: translateY(0) scale(0.7); }
+    72%     { opacity: 1; transform: translateY(-1.4px) scale(1.1); }
+    78%     { opacity: 1; transform: translateY(-1.7px) scale(1.18); }
+    84%     { opacity: 0; transform: translateY(-3px) scale(1.24); }
+    100%    { opacity: 0; transform: translateY(0) scale(0.7); }
+  }
+.viking-runner-2 .viking-alert-right {
+  animation: runner-alert-pop-2 7s linear 1 forwards;
+  animation-delay: 1s;
+}
+  @keyframes runner-alert-pop-2-left {
+    0%, 26% { opacity: 0; transform: translateY(0) scale(0.7); }
+    30%     { opacity: 1; transform: translateY(-1.2px) scale(1.1); }
+    36%     { opacity: 1; transform: translateY(-1.5px) scale(1.18); }
+    42%     { opacity: 0; transform: translateY(-2.6px) scale(1.22); }
+    100%    { opacity: 0; transform: translateY(0) scale(0.7); }
+  }
+.viking-runner-2 .viking-alert-left {
+  animation: runner-alert-pop-2-left 7s linear 1 forwards;
+  animation-delay: 1s;
+}
+
+  /* Arm swing with gated steps */
+  @keyframes arm-swing-left {
+    0%, 100% { transform: rotate(10deg); }
+    50%      { transform: rotate(-10deg); }
+  }
+  @keyframes arm-swing-right {
+    0%, 100% { transform: rotate(-10deg); }
+    50%      { transform: rotate(10deg); }
+  }
+  .viking-arm.left  { animation: arm-swing-left 300ms steps(2, end) infinite; }
+  .viking-arm.right { animation: arm-swing-right 300ms steps(2, end) infinite; }
+
   /* Icon animations */
   @keyframes bob-slow {
     0%, 100% { transform: translateY(0); }

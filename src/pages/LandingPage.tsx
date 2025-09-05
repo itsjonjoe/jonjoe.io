@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Embers from '../components/Embers';
 import Longship from '../components/Longship';
@@ -34,7 +34,7 @@ export default function LandingPage() {
   const [smithIndex, setSmithIndex] = useState(0);
   const [skaldIndex, setSkaldIndex] = useState(0);
   const [warriorIndex, setWarriorIndex] = useState(0);
-  const [openMobile, setOpenMobile] = useState<'smith' | 'skald' | 'warrior' | null>('smith');
+  const [openMobile, setOpenMobile] = useState<'smith' | 'skald' | 'warrior' | null>(null);
   const [contactOpen, setContactOpen] = useState(false);
 
   useEffect(() => {
@@ -47,9 +47,8 @@ export default function LandingPage() {
   }, []);
 
   const MOBILE_HDR = 64; // px for collapsed header height (title + icon)
-  const MOBILE_PAD = 50; // px top padding for each item
   const MOBILE_SIDE_PAD = 8; // 0.5rem from inline style
-  const CLOSED_HEIGHT = MOBILE_HDR + MOBILE_PAD + MOBILE_SIDE_PAD; // ensure header fully visible
+  const CLOSED_HEIGHT = MOBILE_HDR + MOBILE_SIDE_PAD; // ensure header fully visible
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -73,26 +72,26 @@ export default function LandingPage() {
         />
         {/* Floating embers */}
         <Embers count={28} />
-        {/* Longship silhouette near the bottom */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-30 hidden sm:block">
-          <Longship className="w-[320px] h-[110px]" />
-        </div>
+        {/* Longship silhouette near the bottom (moved outside this non-interactive layer) */}
       </div>
+
+      {/* Interactive Longship (clickable) */}
+      <InteractiveLongship />
 
       {/* Mobile Accordion */}
       {/* Mobile Title (ghost overlay style) */}
       <div className="md:hidden relative z-10 px-4 pt-6 pb-2 text-center select-none">
-        <h1 className="text-5xl font-black tracking-widest text-white/60 px-2">Jonjoe Whitfield</h1>
+        <h1 className="text-4xl font-black tracking-widest text-white/60 px-2">Jonjoe Whitfield</h1>
         <p className="mt-1 text-sm tracking-widest text-white/40">SMITH • SKALD • WARRIOR</p>
         <div className="mt-2 h-px w-24 mx-auto bg-white/10" />
       </div>
 
-      <div className="md:hidden relative z-10 p-2 space-y-2">
+      <div className="md:hidden relative z-10 p-2 pb-24 space-y-2" style={{ paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 90px)' }}>
         {([
           {
             key: 'smith' as const,
             title: '<Smith />',
-            icon: <VikingSmithIcon className="w-10 h-10" />,
+            icon: <VikingSmithIcon className="w-20 h-20 -mt-4 relative z-10" />,
             bg: 'from-[#2c1810] via-[#4a2c1a] to-[#1a1611]',
             border: 'border-[#8b4513] text-[#d4953a]',
             body: (
@@ -120,7 +119,7 @@ export default function LandingPage() {
           {
             key: 'skald' as const,
             title: '"Skald"',
-            icon: <VikingSkaldIcon className="w-10 h-10" />,
+            icon: <VikingSkaldIcon className="w-20 h-20 -mt-4 relative z-10" />,
             bg: 'from-[#1a2332] via-[#2d4a6b] to-[#1a1611]',
             border: 'border-[#4682b4] text-[#87ceeb]',
             body: (
@@ -148,7 +147,7 @@ export default function LandingPage() {
           {
             key: 'warrior' as const,
             title: '[Warrior]',
-            icon: <VikingWarriorIcon className="w-10 h-10" />,
+            icon: <VikingWarriorIcon className="w-20 h-20 -mt-4 relative z-10" />,
             bg: 'from-[#33260f] via-[#5b4a1a] to-[#1a1611]',
             border: 'border-[#eab308] text-[#eab308]',
             body: (
@@ -178,17 +177,17 @@ export default function LandingPage() {
           return (
             <div
               key={section.key}
-              className={`accordion rounded-xl border ${section.border} bg-gradient-to-br ${section.bg}`}
-              style={{ maxHeight: open ? 1000 : CLOSED_HEIGHT, padding: '0.5rem', paddingTop: MOBILE_PAD }}
+              className={`accordion overflow-visible rounded-xl border ${section.border} bg-gradient-to-br ${section.bg}`}
+              style={{ maxHeight: open ? 1000 : CLOSED_HEIGHT, padding: '0.5rem' }}
             >
               <div className="flex w-full items-center justify-between" style={{ height: MOBILE_HDR }}>
                 <button
                   onClick={() => setOpenMobile(open ? null : section.key)}
-                  className="flex w-full items-end justify-between"
+                  className="flex w-full items-center justify-between"
                 >
-                  <div className="flex items-end gap-3">
+                  <div className="flex items-center gap-3">
                     {section.icon}
-                    <span className="relative font-extrabold tracking-widest text-3xl leading-none top-[-16px]">
+                    <span className="font-extrabold tracking-widest text-2xl leading-none">
                       {section.title}
                     </span>
                   </div>
@@ -351,6 +350,55 @@ export default function LandingPage() {
       <Modal open={contactOpen} onClose={() => setContactOpen(false)} title="Say Hello">
         <ContactList />
       </Modal>
+    </div>
+  );
+}
+
+function InteractiveLongship() {
+  const [rocking, setRocking] = useState(false);
+  const [running, setRunning] = useState(false);
+  const [cycle, setCycle] = useState(0);
+  const timerRef = useRef<number | null>(null);
+  const runTimerRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) {
+        window.clearTimeout(timerRef.current);
+      }
+      if (runTimerRef.current) {
+        window.clearTimeout(runTimerRef.current);
+      }
+    };
+  }, []);
+
+  const handleClick = () => {
+    if (timerRef.current) {
+      window.clearTimeout(timerRef.current);
+    }
+    setRocking(true);
+    setRunning(true);
+    setCycle(c => c + 1);
+    // Rocking runs for 6s
+    timerRef.current = window.setTimeout(() => {
+      setRocking(false);
+      timerRef.current = null;
+    }, 6000);
+    // Runners need 8s so runner 2 can finish 2s after runner 1
+    runTimerRef.current = window.setTimeout(() => {
+      setRunning(false);
+      runTimerRef.current = null;
+    }, 8000);
+  };
+
+  return (
+    <div
+      className="absolute z-20 bottom-[calc(env(safe-area-inset-bottom,0px)+120px)] md:bottom-4 left-1/2 -translate-x-1/2 opacity-30 block pointer-events-auto cursor-pointer select-none"
+      onClick={handleClick}
+      aria-label="Rock the longship"
+      title="Rock the longship"
+    >
+      <Longship className={`w-[320px] h-[110px] ${rocking ? 'ship-rock-strong' : ''}`} showRunner={running} punctMode={cycle % 3} />
     </div>
   );
 }
