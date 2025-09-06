@@ -396,6 +396,19 @@
 }
 
 @layer components {
+  /* Crate breaking: shards fall downward like splinters */
+  @keyframes shard-fall {
+    0%   { transform: translate(0,0) rotate(0deg); opacity: 1; }
+    60%  { transform: translate(calc(var(--dx, 0) * .7), calc(var(--dy, 24px) * .6)) rotate(calc(var(--rot, 25deg) * .8)); opacity: .95; }
+    100% { transform: translate(var(--dx, 0), var(--dy, 28px)) rotate(calc(var(--rot, 25deg) * 1.2)); opacity: 1; }
+  }
+  .crate-shard { position: absolute; box-shadow: 0 0 2px rgba(0,0,0,0.25); animation: shard-fall 900ms cubic-bezier(.2,.8,.3,1) forwards; }
+  @keyframes crate-break {
+    0% { transform: translateY(0) scale(1); }
+    35% { transform: translateY(2px) scale(1.06); }
+    100% { transform: translateY(2px) scale(1); }
+  }
+  .crate-broken { animation: crate-break 160ms ease-out 1; }
   .rune-list {
     @apply space-y-2;
   }

@@ -59,6 +59,10 @@ export default function SmithPage() {
   const [open, setOpen] = useState(false);
   const [tabsStuck, setTabsStuck] = useState(false);
   const sentinelRef = useRef<HTMLDivElement>(null);
+  const [cratesBroken, setCratesBroken] = useState({ a: false, b: false, c: false });
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const firstItemRef = useRef<HTMLLIElement>(null);
+  const [lineTop, setLineTop] = useState<number>(0);
 
   useEffect(() => {
     const el = sentinelRef.current;
@@ -70,6 +74,26 @@ export default function SmithPage() {
     io.observe(el);
     return () => io.disconnect();
   }, []);
+
+  // Position the vertical timeline rule to start at the first bullet's center
+  useEffect(() => {
+    function compute() {
+      const container = timelineRef.current;
+      const first = firstItemRef.current;
+      if (!container || !first) return;
+      const cRect = container.getBoundingClientRect();
+      const fRect = first.getBoundingClientRect();
+      const top = Math.max(0, fRect.top - cRect.top + fRect.height / 2);
+      setLineTop(top);
+    }
+    // compute after layout
+    const id = window.setTimeout(compute, 0);
+    window.addEventListener('resize', compute);
+    return () => {
+      window.clearTimeout(id);
+      window.removeEventListener('resize', compute);
+    };
+  }, [activeTab]);
   const skillGroups: { title: string; items: string[] }[] = [
     { title: 'Languages', items: ['TypeScript', 'JavaScript', 'Python', 'SQL'] },
     { title: 'Mobile', items: ['React Native', 'Expo', 'iOS', 'Android'] },
@@ -211,9 +235,133 @@ export default function SmithPage() {
             </p>
             <div className="grid gap-8 max-w-5xl mx-auto">
               {/* Work in Progress tile */}
-              <Card className="text-center">
+              <Card className="text-center pt-6">
                 <div className="mb-2 flex justify-center">
-                  <PixelBuilder className="w-20 h-20" />
+                  <div className="relative inline-block">
+                    <PixelBuilder className="w-20 h-20" />
+                    {/* Wooden crates around the builder */}
+                    {/* Crate A */}
+                    <div
+                      role="button"
+                      aria-label="wooden crate"
+                      onClick={() => setCratesBroken(s => ({ ...s, a: true }))}
+                      className="absolute -top-3 -left-10 w-8 h-8 rotate-[-6deg] cursor-pointer select-none"
+                    >
+                      {!cratesBroken.a ? (
+                        <div className="relative w-full h-full bg-[#6b4a2a] border border-[#8b4513] shadow-[0_2px_4px_rgba(0,0,0,0.35)]">
+                          {/* Inner frame */}
+                          <div className="absolute inset-1 border border-[#8b4513]/70" />
+                          {/* Top/Bottom slats */}
+                          <div className="absolute left-1 right-1 top-1 h-px bg-[#8b4513]/60" />
+                          <div className="absolute left-1 right-1 bottom-1 h-px bg-[#8b4513]/60" />
+                          {/* Side grain lines */}
+                          <div className="absolute top-1 bottom-1 left-2 w-px bg-[#8b4513]/50" />
+                          <div className="absolute top-1 bottom-1 right-2 w-px bg-[#8b4513]/50" />
+                          {/* Diagonal braces */}
+                          <div className="absolute inset-1">
+                            <div className="absolute left-0 right-0 top-1/2 h-px bg-[#3a2b1a]/60 rotate-45 transform origin-center" />
+                            <div className="absolute left-0 right-0 top-1/2 h-px bg-[#3a2b1a]/60 -rotate-45 transform origin-center" />
+                          </div>
+                          {/* Nails */}
+                          <div className="absolute w-1 h-1 bg-[#d6a960] top-1 left-1" />
+                          <div className="absolute w-1 h-1 bg-[#d6a960] top-1 right-1" />
+                          <div className="absolute w-1 h-1 bg-[#d6a960] bottom-1 left-1" />
+                          <div className="absolute w-1 h-1 bg-[#d6a960] bottom-1 right-1" />
+                        </div>
+                      ) : (
+                        <div className="relative w-full h-full crate-broken">
+                          {/* falling shards */}
+                          <div className="crate-shard w-1 h-1 bg-[#6b4a2a]" style={{ left: '4px', top: '4px', ['--dx' as any]: '-10px', ['--dy' as any]: '22px', ['--rot' as any]: '-35deg' }} />
+                          <div className="crate-shard w-1 h-1 bg-[#8b4513]" style={{ left: '2px', top: '2px', ['--dx' as any]: '-6px', ['--dy' as any]: '28px', ['--rot' as any]: '22deg' }} />
+                          <div className="crate-shard w-1 h-1 bg-[#8b4513]" style={{ left: '6px', top: '6px', ['--dx' as any]: '8px', ['--dy' as any]: '24px', ['--rot' as any]: '30deg' }} />
+                          <div className="crate-shard w-1 h-1 bg-[#3a2b1a]" style={{ left: '1px', top: '6px', ['--dx' as any]: '-4px', ['--dy' as any]: '26px', ['--rot' as any]: '-18deg' }} />
+                          <div className="crate-shard w-1 h-1 bg-[#d6a960]" style={{ left: '5px', top: '1px', ['--dx' as any]: '4px', ['--dy' as any]: '30px', ['--rot' as any]: '45deg' }} />
+                          <div className="crate-shard w-1 h-1 bg-[#6b4a2a]" style={{ left: '3px', top: '5px', ['--dx' as any]: '2px', ['--dy' as any]: '20px', ['--rot' as any]: '10deg' }} />
+                          <div className="crate-shard w-1 h-1 bg-[#8b4513]" style={{ left: '7px', top: '3px', ['--dx' as any]: '-2px', ['--dy' as any]: '18px', ['--rot' as any]: '-12deg' }} />
+                        </div>
+                      )}
+                    </div>
+                    {/* Crate B */}
+                    <div
+                      role="button"
+                      aria-label="wooden crate"
+                      onClick={() => setCratesBroken(s => ({ ...s, b: true }))}
+                      className="absolute -bottom-2 -right-12 w-8 h-8 rotate-[8deg] cursor-pointer select-none"
+                    >
+                      {!cratesBroken.b ? (
+                        <div className="relative w-full h-full bg-[#6b4a2a] border border-[#8b4513] shadow-[0_2px_4px_rgba(0,0,0,0.35)]">
+                          {/* Inner frame */}
+                          <div className="absolute inset-1 border border-[#8b4513]/70" />
+                          {/* Top/Bottom slats */}
+                          <div className="absolute left-1 right-1 top-1 h-px bg-[#8b4513]/60" />
+                          <div className="absolute left-1 right-1 bottom-1 h-px bg-[#8b4513]/60" />
+                          {/* Side grain lines */}
+                          <div className="absolute top-1 bottom-1 left-2 w-px bg-[#8b4513]/50" />
+                          <div className="absolute top-1 bottom-1 right-2 w-px bg-[#8b4513]/50" />
+                          {/* Diagonal braces */}
+                          <div className="absolute inset-1">
+                            <div className="absolute left-0 right-0 top-1/2 h-px bg-[#3a2b1a]/60 rotate-45 transform origin-center" />
+                            <div className="absolute left-0 right-0 top-1/2 h-px bg-[#3a2b1a]/60 -rotate-45 transform origin-center" />
+                          </div>
+                          {/* Nails */}
+                          <div className="absolute w-1 h-1 bg-[#d6a960] top-1 left-1" />
+                          <div className="absolute w-1 h-1 bg-[#d6a960] top-1 right-1" />
+                          <div className="absolute w-1 h-1 bg-[#d6a960] bottom-1 left-1" />
+                          <div className="absolute w-1 h-1 bg-[#d6a960] bottom-1 right-1" />
+                        </div>
+                      ) : (
+                        <div className="relative w-full h-full crate-broken">
+                          <div className="crate-shard w-1 h-1 bg-[#6b4a2a]" style={{ left: '4px', top: '4px', ['--dx' as any]: '10px', ['--dy' as any]: '22px', ['--rot' as any]: '35deg' }} />
+                          <div className="crate-shard w-1 h-1 bg-[#8b4513]" style={{ left: '2px', top: '2px', ['--dx' as any]: '6px', ['--dy' as any]: '28px', ['--rot' as any]: '-22deg' }} />
+                          <div className="crate-shard w-1 h-1 bg-[#8b4513]" style={{ left: '6px', top: '6px', ['--dx' as any]: '-8px', ['--dy' as any]: '24px', ['--rot' as any]: '-30deg' }} />
+                          <div className="crate-shard w-1 h-1 bg-[#3a2b1a]" style={{ left: '1px', top: '6px', ['--dx' as any]: '4px', ['--dy' as any]: '26px', ['--rot' as any]: '18deg' }} />
+                          <div className="crate-shard w-1 h-1 bg-[#d6a960]" style={{ left: '5px', top: '1px', ['--dx' as any]: '-4px', ['--dy' as any]: '30px', ['--rot' as any]: '-45deg' }} />
+                          <div className="crate-shard w-1 h-1 bg-[#6b4a2a]" style={{ left: '7px', top: '5px', ['--dx' as any]: '-2px', ['--dy' as any]: '18px', ['--rot' as any]: '14deg' }} />
+                          <div className="crate-shard w-1 h-1 bg-[#8b4513]" style={{ left: '3px', top: '3px', ['--dx' as any]: '2px', ['--dy' as any]: '20px', ['--rot' as any]: '-10deg' }} />
+                        </div>
+                      )}
+                    </div>
+                    {/* Crate C */}
+                    <div
+                      role="button"
+                      aria-label="wooden crate"
+                      onClick={() => setCratesBroken(s => ({ ...s, c: true }))}
+                      className="absolute -top-6 left-8 w-8 h-8 rotate-[15deg] cursor-pointer select-none"
+                    >
+                      {!cratesBroken.c ? (
+                        <div className="relative w-full h-full bg-[#6b4a2a] border border-[#8b4513] shadow-[0_2px_4px_rgba(0,0,0,0.35)]">
+                          {/* Inner frame */}
+                          <div className="absolute inset-1 border border-[#8b4513]/70" />
+                          {/* Top/Bottom slats */}
+                          <div className="absolute left-1 right-1 top-1 h-px bg-[#8b4513]/60" />
+                          <div className="absolute left-1 right-1 bottom-1 h-px bg-[#8b4513]/60" />
+                          {/* Side grain lines */}
+                          <div className="absolute top-1 bottom-1 left-2 w-px bg-[#8b4513]/50" />
+                          <div className="absolute top-1 bottom-1 right-2 w-px bg-[#8b4513]/50" />
+                          {/* Diagonal braces */}
+                          <div className="absolute inset-1">
+                            <div className="absolute left-0 right-0 top-1/2 h-px bg-[#3a2b1a]/60 rotate-45 transform origin-center" />
+                            <div className="absolute left-0 right-0 top-1/2 h-px bg-[#3a2b1a]/60 -rotate-45 transform origin-center" />
+                          </div>
+                          {/* Nails */}
+                          <div className="absolute w-1 h-1 bg-[#d6a960] top-1 left-1" />
+                          <div className="absolute w-1 h-1 bg-[#d6a960] top-1 right-1" />
+                          <div className="absolute w-1 h-1 bg-[#d6a960] bottom-1 left-1" />
+                          <div className="absolute w-1 h-1 bg-[#d6a960] bottom-1 right-1" />
+                        </div>
+                      ) : (
+                        <div className="relative w-full h-full crate-broken">
+                          <div className="crate-shard w-1 h-1 bg-[#6b4a2a]" style={{ left: '4px', top: '4px', ['--dx' as any]: '-8px', ['--dy' as any]: '26px', ['--rot' as any]: '50deg' }} />
+                          <div className="crate-shard w-1 h-1 bg-[#8b4513]" style={{ left: '2px', top: '2px', ['--dx' as any]: '8px', ['--dy' as any]: '30px', ['--rot' as any]: '-30deg' }} />
+                          <div className="crate-shard w-1 h-1 bg-[#8b4513]" style={{ left: '6px', top: '6px', ['--dx' as any]: '6px', ['--dy' as any]: '22px', ['--rot' as any]: '15deg' }} />
+                          <div className="crate-shard w-1 h-1 bg-[#3a2b1a]" style={{ left: '1px', top: '6px', ['--dx' as any]: '-6px', ['--dy' as any]: '24px', ['--rot' as any]: '12deg' }} />
+                          <div className="crate-shard w-1 h-1 bg-[#d6a960]" style={{ left: '5px', top: '1px', ['--dx' as any]: '2px', ['--dy' as any]: '28px', ['--rot' as any]: '60deg' }} />
+                          <div className="crate-shard w-1 h-1 bg-[#6b4a2a]" style={{ left: '7px', top: '3px', ['--dx' as any]: '-2px', ['--dy' as any]: '18px', ['--rot' as any]: '-10deg' }} />
+                          <div className="crate-shard w-1 h-1 bg-[#8b4513]" style={{ left: '3px', top: '5px', ['--dx' as any]: '3px', ['--dy' as any]: '20px', ['--rot' as any]: '22deg' }} />
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </div>
                 <h4 className="text-xl font-semibold mb-1 text-[#d4953a]">Work in Progress</h4>
                 <p className="text-sm opacity-90">Fresh projects are being forged. Check back soon.</p>
@@ -226,20 +374,24 @@ export default function SmithPage() {
           <section>
             <h3 className="text-3xl text-center mb-4">Work Experience</h3>
             <p className="text-center opacity-80 mb-8 max-w-xl mx-auto">Highlights from recent roles and engagements.</p>
-            <div className="relative mx-auto max-w-4xl">
-              <div className="absolute left-4 top-0 bottom-0 w-px bg-[#8b4513]/50 md:left-1/2" />
+            <div className="relative mx-auto max-w-4xl" ref={timelineRef}>
+              <div className="absolute left-4 w-px bg-[#8b4513]/50 md:left-1/2" style={{ top: lineTop, bottom: 0 }} />
               <ul className="timeline space-y-8 list-none">
                 {orderedWork.map((p, i) => (
-                  <li key={p.title + p.period} className="relative md:flex md:items-center md:gap-8 list-none">
+                  <li
+                    key={p.title + p.period}
+                    ref={i === 0 ? firstItemRef : undefined}
+                    className="relative md:flex md:items-center md:gap-8 list-none"
+                  >
                     <div className={`hidden md:block md:flex-1 ${i % 2 ? 'order-2 text-left' : 'text-right'}`}>
                       <h4 className="text-xl font-bold text-[#d4953a]">{p.title}</h4>
                       <div className="opacity-80">{p.period}</div>
                     </div>
                     {/* Center dot aligned to timeline rule */}
-                    <div className="absolute top-1/2 -translate-y-1/2 left-4 md:left-1/2 md:-translate-x-1/2 z-10">
+                    <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 left-4 md:left-1/2 z-10">
                       <span className="block h-3 w-3 rounded-full bg-[#d4953a] shadow-[0_0_8px_rgba(212,149,58,0.6)]"></span>
                     </div>
-                    <div className="mt-2 md:mt-0 md:flex-1">
+                    <div className="mt-2 md:mt-0 md:flex-1 pl-10 md:pl-0">
                       <div className="rounded-lg border border-[#8b4513] bg-black/40 p-4">
                         <div className="mb-1 text-sm opacity-80">{p.period}</div>
                         <h5 className="text-lg font-semibold mb-1">{p.title}</h5>

@@ -36,6 +36,8 @@ export default function LandingPage() {
   const [warriorIndex, setWarriorIndex] = useState(0);
   const [openMobile, setOpenMobile] = useState<'smith' | 'skald' | 'warrior' | null>(null);
   const [contactOpen, setContactOpen] = useState(false);
+  const ctaRef = useRef<HTMLDivElement>(null);
+  const [ctaOffset, setCtaOffset] = useState(120);
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -44,6 +46,24 @@ export default function LandingPage() {
       setWarriorIndex(i => (i + 1) % warriorTexts.length);
     }, 4000);
     return () => clearInterval(id);
+  }, []);
+
+  // Measure the mobile CTA height and set boat bottom offset to CTA height + margin (8px)
+  useEffect(() => {
+    const compute = () => {
+      const el = ctaRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      // base margin from bottom-2 is 8px
+      setCtaOffset(Math.ceil(rect.height + 8));
+    };
+    // compute on mount and on resize
+    const id = window.setTimeout(compute, 0);
+    window.addEventListener('resize', compute);
+    return () => {
+      window.clearTimeout(id);
+      window.removeEventListener('resize', compute);
+    };
   }, []);
 
   const MOBILE_HDR = 64; // px for collapsed header height (title + icon)
@@ -76,13 +96,23 @@ export default function LandingPage() {
       </div>
 
       {/* Interactive Longship (clickable) */}
-      <InteractiveLongship />
+      <InteractiveLongship bottomOffset={ctaOffset} />
 
       {/* Mobile Accordion */}
-      {/* Mobile Title (ghost overlay style) */}
-      <div className="md:hidden relative z-10 px-4 pt-6 pb-2 text-center select-none">
-        <h1 className="text-4xl font-black tracking-widest text-white/60 px-2">Jonjoe Whitfield</h1>
-        <p className="mt-1 text-sm tracking-widest text-white/40">SMITH • SKALD • WARRIOR</p>
+      {/* Mobile Title (ghost overlay style with drop-cap J) */}
+      <div className="md:hidden relative z-10 px-4 pt-6 pb-2 select-none">
+        <h1 className="px-2">
+          <div className="flex items-start justify-center gap-2">
+            <div className="flex items-center justify-center w-12 h-16 rounded-md border-2 border-[#d4953a] bg-black/50 shadow-[0_2px_8px_rgba(0,0,0,0.25)]">
+              <span className="text-5xl font-black leading-none text-[#d4953a]">J</span>
+            </div>
+            <div className="flex flex-col leading-tight text-left">
+              <span className="text-3xl font-black tracking-widest text-white/70">onjoe</span>
+              <span className="text-3xl font-black tracking-widest text-white/70 -mt-1">Whitfield</span>
+            </div>
+          </div>
+        </h1>
+        <p className="mt-2 text-center text-sm tracking-widest text-white/40">SMITH • SKALD • WARRIOR</p>
         <div className="mt-2 h-px w-24 mx-auto bg-white/10" />
       </div>
 
@@ -204,7 +234,7 @@ export default function LandingPage() {
       </div>
 
       {/* Say Hello CTA for mobile */}
-      <div className="md:hidden fixed left-2 right-2 bottom-2 z-20">
+      <div ref={ctaRef} className="md:hidden fixed left-2 right-2 bottom-2 z-20">
         <button
           onClick={() => setContactOpen(true)}
           className="w-full rounded-lg bg-[#d4953a] py-3 text-center text-sm font-semibold text-black shadow-[0_6px_16px_rgba(212,149,58,0.45)] active:translate-y-px"
@@ -354,7 +384,7 @@ export default function LandingPage() {
   );
 }
 
-function InteractiveLongship() {
+function InteractiveLongship({ bottomOffset = 120 }: { bottomOffset?: number }) {
   const [rocking, setRocking] = useState(false);
   const [running, setRunning] = useState(false);
   const [cycle, setCycle] = useState(0);
@@ -393,7 +423,8 @@ function InteractiveLongship() {
 
   return (
     <div
-      className="absolute z-20 bottom-[calc(env(safe-area-inset-bottom,0px)+120px)] md:bottom-4 left-1/2 -translate-x-1/2 opacity-30 block pointer-events-auto cursor-pointer select-none"
+      className="fixed md:absolute z-10 left-1/2 -translate-x-1/2 opacity-30 block pointer-events-auto cursor-pointer select-none md:bottom-4"
+      style={{ bottom: `calc(env(safe-area-inset-bottom, 0px) + ${bottomOffset}px)` }}
       onClick={handleClick}
       aria-label="Rock the longship"
       title="Rock the longship"
