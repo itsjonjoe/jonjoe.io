@@ -100,8 +100,8 @@ export default function LandingPage() {
 
       {/* Mobile Accordion */}
       {/* Mobile Title (ghost overlay style with drop-cap J) */}
-      <div className="md:hidden relative z-10 px-4 pt-6 pb-2 select-none">
-        <h1 className="px-2">
+      <div className="md:hidden relative z-10 px-4 pt-0 pb-1 select-none">
+        <h1 className="px-2 m-0">
           <div className="flex items-start justify-center gap-2">
             <div className="flex items-center justify-center w-12 h-16 rounded-md border-2 border-[#d4953a] bg-black/50 shadow-[0_2px_8px_rgba(0,0,0,0.25)]">
               <span className="text-5xl font-black leading-none text-[#d4953a]">J</span>
@@ -116,7 +116,7 @@ export default function LandingPage() {
         <div className="mt-2 h-px w-24 mx-auto bg-white/10" />
       </div>
 
-      <div className="md:hidden relative z-10 p-2 pb-24 space-y-2" style={{ paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 90px)' }}>
+      <div className="md:hidden relative z-10 px-2 pt-1 pb-24 space-y-2" style={{ paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 90px)' }}>
         {([
           {
             key: 'smith' as const,

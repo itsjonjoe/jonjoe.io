@@ -1,6 +1,8 @@
 import warrior from '../data/warrior.json';
 import BackLink from '../components/ui/BackLink';
 import { useNavigate } from 'react-router-dom';
+import HeroTitle from '../components/HeroTitle';
+import SectionHeader from '../components/SectionHeader';
 
 type GlanceStat = {
   title: string;
@@ -76,15 +78,16 @@ export default function WarriorPage() {
   const { glanceStats, personalBests, diet, training, supplements } = data;
   return (
     <div className="min-h-screen bg-[#0b0a08] text-[#f4e8bd]">
-      <BackLink color="#eab308" className="text-black hover:text-black" />
+      <BackLink color="#eab308" className="hidden md:block text-black hover:text-black" />
 
       <div className="mx-auto max-w-6xl p-4 pt-20 space-y-10 md:pt-24">
         {/* Hero */}
         <header className="relative overflow-hidden rounded-2xl border-2 border-[#eab308] bg-[#13100d] text-center shadow-lg">
           <div className="p-10 sm:p-12">
-            <h1 className="bg-gradient-to-b from-yellow-200 to-yellow-600 bg-clip-text text-5xl font-bold tracking-wide text-transparent sm:text-6xl md:text-7xl">
+            <h1 className="hidden md:block bg-gradient-to-b from-yellow-200 to-yellow-600 bg-clip-text text-5xl font-bold tracking-wide text-transparent sm:text-6xl md:text-7xl">
               WARRIOR
             </h1>
+            <HeroTitle drop="W" line1="arrior" borderColor="#eab308" letterColor="#eab308" textColor="#eab308" />
             <p className="mt-2 text-sm text-[#c7b98a] sm:text-base">
               Chronicle of strength and endurance · Project Viking
             </p>
@@ -112,7 +115,7 @@ export default function WarriorPage() {
 
         {/* At a Glance */}
         <section id="glance" className="space-y-6">
-          <h2 className="text-center text-2xl font-semibold tracking-widest text-[#eab308]">At a Glance</h2>
+          <SectionHeader title="At a Glance" align="center" color="#eab308" sizeClass="text-2xl" titleClassName="font-semibold tracking-widest" />
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {glanceStats.map((s) => (
               <div
@@ -136,7 +139,7 @@ export default function WarriorPage() {
 
         {/* Personal Bests */}
         <section id="pbs" className="space-y-6">
-          <h2 className="text-center text-2xl font-semibold tracking-widest text-[#eab308]">Personal Bests</h2>
+          <SectionHeader title="Personal Bests" align="center" color="#eab308" sizeClass="text-2xl" titleClassName="font-semibold tracking-widest" />
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {personalBests.map((pb) => (
               <div
@@ -156,7 +159,7 @@ export default function WarriorPage() {
 
         {/* Diet */}
         <section id="diet" className="space-y-6">
-          <h2 className="text-center text-2xl font-semibold tracking-widest text-[#eab308]">Diet</h2>
+          <SectionHeader title="Diet" align="center" color="#eab308" sizeClass="text-2xl" titleClassName="font-semibold tracking-widest" />
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {diet.map((d) => (
               <div
@@ -201,7 +204,7 @@ export default function WarriorPage() {
 
         {/* Supplements */}
         <section id="supps" className="space-y-6 pb-12">
-          <h2 className="text-center text-2xl font-semibold tracking-widest text-[#eab308]">Supplements</h2>
+          <SectionHeader title="Supplements" align="center" color="#eab308" sizeClass="text-2xl" titleClassName="font-semibold tracking-widest" />
           <div className="grid gap-4 sm:grid-cols-2">
             {supplements.map((s) => (
               <div
